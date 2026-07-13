@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}SRA Admin Dashboard{% endblock %}</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Custom Style tweaks -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f4f6;
+    }
+  </style>
+</head>
+<body class="flex bg-gray-100 min-h-screen">
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="bg-emerald-900 text-white w-64 min-h-screen flex flex-col transition-all duration-300 ease-in-out z-30 fixed lg:static -translate-x-full lg:translate-x-0">
+    <!-- Brand -->
+    <div class="p-6 border-b border-emerald-800 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <img src="{% static 'logo.jpeg' %}" alt="SRA Logo" class="w-9 h-9 rounded-full" loading="lazy">
+        <span class="font-bold text-lg tracking-wider text-emerald-100">SRA ADMIN</span>
+      </div>
+      <button onclick="toggleSidebar()" class="lg:hidden text-white hover:text-emerald-300">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+      <a href="{% url 'dashboard_home' %}" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-emerald-800 transition-colors {% if request.resolver_match.url_name == 'dashboard_home' %}bg-emerald-800{% endif %}">
+        <i class="fa-solid fa-chart-line w-5"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="{% url 'product_list' %}" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-emerald-800 transition-colors {% if 'product' in request.path %}bg-emerald-800{% endif %}">
+        <i class="fa-solid fa-seedling w-5"></i>
+        <span>Products</span>
+      </a>
+      <a href="{% url 'category_list' %}" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-emerald-800 transition-colors {% if 'categories' in request.path %}bg-emerald-800{% endif %}">
+        <i class="fa-solid fa-tags w-5"></i>
+        <span>Categories</span>
+      </a>
+      <a href="{% url 'enquiry_list' %}" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-emerald-800 transition-colors {% if 'enquiries' in request.path %}bg-emerald-800{% endif %}">
+        <i class="fa-solid fa-envelope-open-text w-5"></i>
+        <span>Enquiries</span>
+      </a>
+      {% if request.user.role == 'super_admin' or request.user.role == 'admin' %}
+      <a href="{% url 'user_list' %}" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-emerald-800 transition-colors {% if 'users' in request.path %}bg-emerald-800{% endif %}">
+        <i class="fa-solid fa-users w-5"></i>
+        <span>Users</span>
+      </a>
+      {% endif %}
+      <a href="{% url 'profile_edit' %}" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-emerald-800 transition-colors {% if 'profile' in request.path %}bg-emerald-800{% endif %}">
+        <i class="fa-solid fa-user-gear w-5"></i>
+        <span>Profile</span>
+      </a>
+      <a href="{% url 'logout' %}" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-emerald-800 text-red-300 transition-colors mt-8">
+        <i class="fa-solid fa-right-from-bracket w-5"></i>
+        <span>Logout</span>
+      </a>
+    </nav>
+
+    <!-- User Section -->
+    <div class="p-4 border-t border-emerald-800 flex items-center space-x-3 bg-emerald-950">
+      {% if request.user.avatar %}
+        <img src="{{ request.user.avatar.url }}" alt="Avatar" class="w-10 h-10 rounded-full object-cover" loading="lazy">
+      {% else %}
+        <div class="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center font-bold text-emerald-100">
+          {{ request.user.username|slice:":1"|upper }}
+        </div>
+      {% endif %}
+      <div class="flex-1 min-w-0">
+        <p class="text-sm font-semibold truncate">{{ request.user.username }}</p>
+        <p class="text-xs text-emerald-300 capitalize truncate">{{ request.user.get_role_display }}</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Content Area -->
+  <div class="flex-1 flex flex-col min-w-0 overflow-hidden lg:pl-0">
+    <!-- Top Header -->
+    <header class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
+      <div class="flex items-center space-x-4">
+        <button onclick="toggleSidebar()" class="lg:hidden text-gray-600 hover:text-emerald-900 focus:outline-none">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+        <h1 class="text-xl font-semibold text-gray-800">{% block header_title %}SRA Admin Dashboard{% endblock %}</h1>
+      </div>
+      
+      <!-- Public site preview btn -->
+      <div class="flex items-center space-x-4">
+        <a href="{% url 'home' %}" target="_blank" class="text-sm bg-emerald-100 text-emerald-800 px-3 py-1.5 rounded-md font-medium hover:bg-emerald-200 transition-colors">
+          <i class="fa-solid fa-globe mr-1.5"></i> Visit Website
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-1 overflow-y-auto p-6">
+      <!-- Alerts & Messages -->
+      {% if messages %}
+        <div class="mb-6 space-y-2">
+          {% for message in messages %}
+            <div class="p-4 rounded-lg text-sm font-medium {% if message.tags == 'error' %}bg-red-50 text-red-800 border border-red-200{% else %}bg-emerald-50 text-emerald-800 border border-emerald-200{% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <!-- Overlay for sidebar on mobile -->
+  <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden lg:hidden"></div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      sidebar.classList.toggle('-translate-x-full');
+      overlay.classList.toggle('hidden');
+    }
+  </script>
+</body>
+</html>

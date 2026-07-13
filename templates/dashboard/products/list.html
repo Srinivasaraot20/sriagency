@@ -1,0 +1,207 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Products List | SRA Admin{% endblock %}
+{% block header_title %}Product Management{% endblock %}
+
+{% block content %}
+<!-- Top Toolbar -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+  <!-- Search and Filters Form -->
+  <form method="GET" class="flex flex-wrap items-center gap-3 flex-1">
+    <div class="relative min-w-[200px] flex-1 md:flex-initial">
+      <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </span>
+      <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Search by name, brand, SKU..." class="w-full pl-10 pr-4 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+    </div>
+
+    <select name="category" class="text-sm rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+      <option value="">All Categories</option>
+      {% for cat in categories %}
+        <option value="{{ cat.id }}" {% if category_id|stringformat:"s" == cat.id|stringformat:"s" %}selected{% endif %}>{{ cat.name }}</option>
+      {% endfor %}
+    </select>
+
+    <select name="status" class="text-sm rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+      <option value="">All Status</option>
+      <option value="active" {% if status == 'active' %}selected{% endif %}>Active</option>
+      <option value="inactive" {% if status == 'inactive' %}selected{% endif %}>Inactive</option>
+    </select>
+
+    <select name="featured" class="text-sm rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+      <option value="">Featured Status</option>
+      <option value="yes" {% if featured == 'yes' %}selected{% endif %}>Featured Only</option>
+    </select>
+
+    <select name="sort" class="text-sm rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+      <option value="-created_at" {% if sort_by == '-created_at' %}selected{% endif %}>Newest First</option>
+      <option value="created_at" {% if sort_by == 'created_at' %}selected{% endif %}>Oldest First</option>
+      <option value="selling_price" {% if sort_by == 'selling_price' %}selected{% endif %}>Price: Low to High</option>
+      <option value="-selling_price" {% if sort_by == '-selling_price' %}selected{% endif %}>Price: High to Low</option>
+      <option value="stock_quantity" {% if sort_by == 'stock_quantity' %}selected{% endif %}>Stock: Low to High</option>
+    </select>
+
+    <button type="submit" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm px-4 py-2 rounded-lg font-medium transition-colors">
+      Filter
+    </button>
+    <a href="{% url 'product_list' %}" class="text-gray-500 hover:text-gray-800 text-sm px-2">Clear</a>
+  </form>
+
+  <div class="flex items-center space-x-3">
+    <!-- Import / Export options -->
+    <div class="relative group">
+      <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm px-3.5 py-2.5 rounded-lg font-medium transition-colors flex items-center">
+        <i class="fa-solid fa-file-export mr-2"></i> Import/Export
+      </button>
+      <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg hidden group-hover:block z-10">
+        <a href="{% url 'export_products' 'csv' %}" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"><i class="fa-solid fa-file-csv mr-2 text-emerald-600"></i> Export CSV</a>
+        <a href="{% url 'export_products' 'excel' %}" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"><i class="fa-solid fa-file-excel mr-2 text-green-600"></i> Export Excel</a>
+        <hr class="border-gray-100">
+        <button onclick="document.getElementById('importModal').classList.remove('hidden')" class="w-full text-left block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"><i class="fa-solid fa-file-import mr-2 text-blue-600"></i> Import File</button>
+      </div>
+    </div>
+
+    <a href="{% url 'product_add' %}" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-4 py-2.5 rounded-lg transition-colors flex items-center">
+      <i class="fa-solid fa-plus mr-2"></i> Add Product
+    </a>
+  </div>
+</div>
+
+<!-- Bulk Actions Table Form -->
+<form method="POST" id="bulkForm">
+  {% csrf_token %}
+  <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="p-4 bg-gray-50 border-b border-gray-100 flex items-center justify-between flex-wrap gap-3">
+      <div class="flex items-center space-x-3">
+        <select name="action" required class="text-sm rounded-lg border border-gray-300 px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white">
+          <option value="" disabled selected>Bulk Actions</option>
+          <option value="activate">Activate Selected</option>
+          <option value="deactivate">Deactivate Selected</option>
+          <option value="delete">Delete Selected</option>
+        </select>
+        <button type="submit" onclick="return confirm('Apply this action to all selected products?')" class="bg-emerald-600 text-white text-xs px-3 py-2 rounded-lg font-bold hover:bg-emerald-700 transition-colors">Apply</button>
+      </div>
+      <span class="text-xs text-gray-500 font-medium"><span id="selectedCount">0</span> products selected</span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+            <th class="p-4 pl-6 w-10">
+              <input type="checkbox" id="selectAll" class="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500">
+            </th>
+            <th class="p-4">Product Info</th>
+            <th class="p-4">SKU / Brand</th>
+            <th class="p-4">Category</th>
+            <th class="p-4">Price</th>
+            <th class="p-4">Stock</th>
+            <th class="p-4">Status</th>
+            <th class="p-4 pr-6 text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-sm text-gray-700">
+          {% for product in products %}
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="p-4 pl-6">
+                <input type="checkbox" name="selected_products" value="{{ product.id }}" class="product-checkbox w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500">
+              </td>
+              <td class="p-4 flex items-center space-x-4">
+                {% if product.thumbnail %}
+                  <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" class="w-12 h-12 object-cover rounded-lg border border-gray-100 flex-shrink-0" loading="lazy">
+                {% elif product.image %}
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-12 h-12 object-cover rounded-lg border border-gray-100 flex-shrink-0" loading="lazy">
+                {% else %}
+                  <div class="w-12 h-12 rounded-lg border border-gray-100 flex-shrink-0 bg-gray-50 flex items-center justify-center text-gray-400"><i class="fa-regular fa-image"></i></div>
+                {% endif %}
+                <div class="min-w-0">
+                  <h4 class="font-semibold text-gray-800 truncate max-w-xs">{{ product.name }}</h4>
+                  <div class="flex items-center space-x-1.5 mt-1">
+                    {% if product.is_featured %}
+                      <span class="bg-yellow-50 text-yellow-700 text-[10px] font-bold px-1.5 py-0.5 rounded border border-yellow-100 flex items-center"><i class="fa-solid fa-star mr-1"></i> Featured</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </td>
+              <td class="p-4">
+                <div class="font-mono text-xs text-gray-700">{{ product.sku }}</div>
+                <div class="text-xs text-gray-400 mt-0.5">{{ product.brand|default:"-" }}</div>
+              </td>
+              <td class="p-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">{{ product.category.name }}</td>
+              <td class="p-4">
+                <div class="font-semibold text-gray-800">₹{{ product.selling_price }}</div>
+                {% if product.mrp > product.selling_price %}
+                  <div class="text-xs text-gray-400 line-through">₹{{ product.mrp }}</div>
+                {% endif %}
+              </td>
+              <td class="p-4">
+                <div class="font-bold {% if product.stock_status == 'out_of_stock' %}text-red-600{% elif product.stock_status == 'low_stock' %}text-yellow-600{% else %}text-emerald-600{% endif %}">
+                  {{ product.stock_quantity }}
+                </div>
+                <div class="text-[10px] uppercase font-semibold text-gray-400 mt-0.5">{{ product.get_stock_status_display }}</div>
+              </td>
+              <td class="p-4">
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-bold border {% if product.is_active %}bg-emerald-50 text-emerald-700 border-emerald-100{% else %}bg-gray-100 text-gray-600 border-gray-200{% endif %}">
+                  {{ product.is_active|yesno:"Active,Inactive" }}
+                </span>
+              </td>
+              <td class="p-4 pr-6 text-right space-x-2">
+                <a href="{% url 'product_edit' product.id %}" class="text-blue-600 hover:text-blue-900 transition-colors"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                <a href="{% url 'product_delete' product.id %}" onclick="return confirm('Are you sure you want to delete this product?')" class="text-red-600 hover:text-red-900 transition-colors"><i class="fa-solid fa-trash"></i> Delete</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="8" class="p-8 text-center text-gray-500">No products found matching criteria.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>
+
+<!-- Import Modal -->
+<div id="importModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+  <div class="bg-white rounded-xl shadow-lg w-full max-w-md p-6 relative">
+    <button onclick="document.getElementById('importModal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+      <i class="fa-solid fa-xmark text-xl"></i>
+    </button>
+    <h3 class="text-lg font-bold text-gray-800 mb-4">Import Products</h3>
+    <form method="POST" action="{% url 'import_products' %}" enctype="multipart/form-data" class="space-y-4">
+      {% csrf_token %}
+      <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-emerald-500 transition-colors" onclick="document.getElementById('import_file').click()">
+        <i class="fa-solid fa-cloud-arrow-up text-4xl text-gray-400 mb-2"></i>
+        <p class="text-sm font-medium text-gray-700">Click to upload spreadsheet file</p>
+        <p class="text-xs text-gray-400 mt-1">Supports CSV, XLSX files</p>
+        <input type="file" id="import_file" name="import_file" required class="hidden" onchange="document.getElementById('fileName').textContent = this.files[0].name">
+        <p id="fileName" class="text-sm text-emerald-600 font-semibold mt-2.5"></p>
+      </div>
+      <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition-colors">Start Import</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Selected checkbox counter
+  const selectAll = document.getElementById('selectAll');
+  const checkboxes = document.querySelectorAll('.product-checkbox');
+  const countSpan = document.getElementById('selectedCount');
+
+  function updateSelectedCount() {
+    const checkedCount = document.querySelectorAll('.product-checkbox:checked').length;
+    countSpan.textContent = checkedCount;
+  }
+
+  if (selectAll) {
+    selectAll.addEventListener('change', function() {
+      checkboxes.forEach(cb => cb.checked = selectAll.checked);
+      updateSelectedCount();
+    });
+  }
+
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', updateSelectedCount);
+  });
+</script>
+{% endblock %}

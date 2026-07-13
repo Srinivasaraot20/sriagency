@@ -1,0 +1,85 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Enquiries | SRA Admin{% endblock %}
+{% block header_title %}Farmer Enquiries{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-xl shadow-sm border border-gray-100 mb-8 flex flex-col md:flex-row md:items-center justify-between p-6 gap-4">
+  <form method="GET" class="flex flex-wrap items-center gap-3 flex-1">
+    <div class="relative min-w-[200px] flex-1 md:flex-initial">
+      <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </span>
+      <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Search name, phone, message..." class="w-full pl-10 pr-4 py-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+    </div>
+
+    <select name="status" class="text-sm rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+      <option value="">All Status</option>
+      <option value="new" {% if status_filter == 'new' %}selected{% endif %}>New</option>
+      <option value="contacted" {% if status_filter == 'contacted' %}selected{% endif %}>Contacted</option>
+      <option value="closed" {% if status_filter == 'closed' %}selected{% endif %}>Closed</option>
+    </select>
+
+    <button type="submit" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm px-4 py-2 rounded-lg font-medium transition-colors">Filter</button>
+    <a href="{% url 'enquiry_list' %}" class="text-gray-500 hover:text-gray-800 text-sm px-2">Clear</a>
+  </form>
+
+  <div class="flex items-center space-x-3">
+    <a href="{% url 'export_enquiries' 'csv' %}" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm px-3.5 py-2.5 rounded-lg font-medium transition-colors flex items-center"><i class="fa-solid fa-file-csv mr-2 text-emerald-600"></i> Export CSV</a>
+    <a href="{% url 'export_enquiries' 'excel' %}" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm px-3.5 py-2.5 rounded-lg font-medium transition-colors flex items-center"><i class="fa-solid fa-file-excel mr-2 text-green-600"></i> Export Excel</a>
+  </div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+          <th class="p-4 pl-6">Farmer Name</th>
+          <th class="p-4">Contact Detail</th>
+          <th class="p-4">Village & Crop</th>
+          <th class="p-4">Subject & Message Preview</th>
+          <th class="p-4">Status</th>
+          <th class="p-4 pr-6 text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 text-sm text-gray-700">
+        {% for enq in enquiries %}
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="p-4 pl-6">
+              <div class="font-semibold text-gray-800">{{ enq.name }}</div>
+              <div class="text-[10px] text-gray-400 mt-1"><i class="fa-regular fa-clock mr-1"></i> {{ enq.created_at|date:"d M Y, H:i" }}</div>
+            </td>
+            <td class="p-4">
+              <div class="text-sm font-semibold text-gray-700">{{ enq.phone }}</div>
+              <div class="text-xs text-gray-400 mt-0.5">{{ enq.email|default:"No email" }}</div>
+            </td>
+            <td class="p-4">
+              <div class="text-sm text-gray-700">{{ enq.village|default:"-" }}</div>
+              <div class="text-xs text-emerald-700 font-semibold mt-0.5">{{ enq.crop_type|default:"-" }}</div>
+              <div class="text-xs text-purple-700 font-medium mt-0.5">{{ enq.product_category|default:"-" }}</div>
+            </td>
+            <td class="p-4 max-w-xs">
+              <div class="font-medium text-gray-800 truncate">{{ enq.subject|default:"General Enquiry" }}</div>
+              <div class="text-xs text-gray-400 truncate mt-0.5">{{ enq.message }}</div>
+            </td>
+            <td class="p-4">
+              <span class="px-2.5 py-1 rounded-full text-xs font-bold border capitalize {% if enq.status == 'new' %}bg-purple-50 text-purple-700 border-purple-100{% elif enq.status == 'contacted' %}bg-blue-50 text-blue-700 border-blue-100{% else %}bg-gray-100 text-gray-600 border-gray-200{% endif %}">
+                {{ enq.get_status_display }}
+              </span>
+            </td>
+            <td class="p-4 pr-6 text-right space-x-2">
+              <a href="{% url 'enquiry_detail' enq.id %}" class="text-emerald-700 hover:text-emerald-900 transition-colors"><i class="fa-solid fa-eye"></i> View</a>
+              <a href="{% url 'enquiry_delete' enq.id %}" onclick="return confirm('Delete this enquiry record?')" class="text-red-600 hover:text-red-900 transition-colors"><i class="fa-solid fa-trash"></i> Delete</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6" class="p-8 text-center text-gray-500">No enquiries found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

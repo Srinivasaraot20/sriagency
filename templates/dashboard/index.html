@@ -1,0 +1,177 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Dashboard Overview | SRA Admin{% endblock %}
+{% block header_title %}Dashboard Overview{% endblock %}
+
+{% block content %}
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4">
+    <div class="p-3 bg-blue-50 text-blue-600 rounded-lg"><i class="fa-solid fa-seedling text-2xl"></i></div>
+    <div>
+      <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Total Products</p>
+      <p class="text-2xl font-bold text-gray-800">{{ total_products }}</p>
+    </div>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4">
+    <div class="p-3 bg-emerald-50 text-emerald-600 rounded-lg"><i class="fa-solid fa-circle-check text-2xl"></i></div>
+    <div>
+      <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Active Products</p>
+      <p class="text-2xl font-bold text-emerald-600">{{ active_products }}</p>
+    </div>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4">
+    <div class="p-3 bg-gray-50 text-gray-500 rounded-lg"><i class="fa-solid fa-circle-xmark text-2xl"></i></div>
+    <div>
+      <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Inactive Products</p>
+      <p class="text-2xl font-bold text-gray-700">{{ inactive_products }}</p>
+    </div>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4">
+    <div class="p-3 bg-yellow-50 text-yellow-600 rounded-lg"><i class="fa-solid fa-tags text-2xl"></i></div>
+    <div>
+      <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Categories</p>
+      <p class="text-2xl font-bold text-gray-800">{{ total_categories }}</p>
+    </div>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4">
+    <div class="p-3 bg-purple-50 text-purple-600 rounded-lg"><i class="fa-solid fa-envelope text-2xl"></i></div>
+    <div>
+      <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Enquiries</p>
+      <p class="text-2xl font-bold text-gray-800">{{ total_enquiries }}</p>
+    </div>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center space-x-4">
+    <div class="p-3 bg-indigo-50 text-indigo-600 rounded-lg"><i class="fa-solid fa-users text-2xl"></i></div>
+    <div>
+      <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Users</p>
+      <p class="text-2xl font-bold text-gray-800">{{ total_users }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-8">
+  <!-- Chart Widget -->
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 xl:col-span-2">
+    <h3 class="text-lg font-bold text-gray-800 mb-6">Products per Category</h3>
+    <div class="h-64">
+      <canvas id="categoryChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Low Stock Alert -->
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center"><i class="fa-solid fa-triangle-exclamation text-yellow-500 mr-2"></i> Low Stock Alerts</h3>
+    <div class="space-y-4 max-h-[17rem] overflow-y-auto">
+      {% for product in low_stock_products %}
+        <div class="flex items-center justify-between p-3.5 bg-yellow-50 rounded-lg border border-yellow-100">
+          <div class="min-w-0 flex-1">
+            <h4 class="font-semibold text-sm text-gray-800 truncate">{{ product.name }}</h4>
+            <p class="text-xs text-gray-500 mt-0.5">SKU: {{ product.sku }}</p>
+          </div>
+          <span class="ml-4 bg-yellow-100 text-yellow-800 text-xs font-bold px-2.5 py-1 rounded-full border border-yellow-200">
+            Stock: {{ product.stock_quantity }}
+          </span>
+        </div>
+      {% empty %}
+        <p class="text-sm text-gray-500 py-4 text-center">No products are low in stock.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+  <!-- Recent Enquiries -->
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+    <h3 class="text-lg font-bold text-gray-800 mb-4">Recent Enquiries</h3>
+    <div class="divide-y divide-gray-100">
+      {% for enquiry in recent_enquiries %}
+        <a href="{% url 'enquiry_detail' enquiry.id %}" class="flex items-center justify-between py-4 hover:bg-gray-50 px-2 rounded-lg transition-colors">
+          <div>
+            <h4 class="font-semibold text-sm text-gray-800">{{ enquiry.name }}</h4>
+            <p class="text-xs text-gray-500 mt-1 truncate max-w-sm">{{ enquiry.subject|default:"General enquiry" }}</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs bg-purple-50 text-purple-700 px-2.5 py-1 rounded-full border border-purple-100 capitalize font-medium">{{ enquiry.get_status_display }}</span>
+            <p class="text-[10px] text-gray-400 mt-1.5">{{ enquiry.created_at|date:"d M, H:i" }}</p>
+          </div>
+        </a>
+      {% empty %}
+        <p class="text-sm text-gray-500 py-6 text-center">No enquiries received yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Recent Products -->
+  <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+    <h3 class="text-lg font-bold text-gray-800 mb-4">Recent Products</h3>
+    <div class="divide-y divide-gray-100">
+      {% for product in recent_products %}
+        <div class="flex items-center space-x-4 py-4">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-12 h-12 object-cover rounded-lg border border-gray-100" loading="lazy">
+          {% else %}
+            <div class="w-12 h-12 rounded-lg border border-gray-100 bg-gray-50 flex items-center justify-center text-gray-400"><i class="fa-regular fa-image"></i></div>
+          {% endif %}
+          <div class="flex-1 min-w-0">
+            <h4 class="font-semibold text-sm text-gray-800 truncate">{{ product.name }}</h4>
+            <p class="text-xs text-gray-500 mt-1 capitalize">{{ product.category.name }} • ₹{{ product.selling_price }}</p>
+          </div>
+          <span class="text-xs {% if product.is_active %}bg-emerald-50 text-emerald-700 border border-emerald-100{% else %}bg-gray-100 text-gray-600{% endif %} px-2.5 py-1 rounded-full font-medium">
+            {{ product.is_active|yesno:"Active,Inactive" }}
+          </span>
+        </div>
+      {% empty %}
+        <p class="text-sm text-gray-500 py-6 text-center">No products created yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const ctx = document.getElementById('categoryChart').getContext('2d');
+    const chartData = {{ category_chart_data|safe }};
+    
+    const labels = chartData.map(item => item.name);
+    const data = chartData.map(item => item.num_products);
+    
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Products Count',
+          data: data,
+          backgroundColor: 'rgba(16, 185, 129, 0.6)',
+          borderColor: 'rgba(16, 185, 129, 1)',
+          borderWidth: 1.5,
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

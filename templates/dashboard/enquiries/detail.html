@@ -1,0 +1,81 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Enquiry Details | SRA Admin{% endblock %}
+{% block header_title %}Enquiry Details{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+  
+  <!-- Header block -->
+  <div class="p-6 border-b border-gray-100 bg-gray-50 flex items-center justify-between flex-wrap gap-4">
+    <div>
+      <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Date Received</span>
+      <h3 class="font-bold text-gray-800 text-sm mt-0.5">{{ enquiry.created_at|date:"d M Y, H:i" }}</h3>
+    </div>
+    
+    <div class="flex items-center space-x-2">
+      <a href="{% url 'enquiry_update_status' enquiry.id 'contacted' %}" class="bg-blue-50 text-blue-700 hover:bg-blue-100 text-xs font-bold px-3.5 py-2 rounded-lg border border-blue-100 transition-colors">Mark Contacted</a>
+      <a href="{% url 'enquiry_update_status' enquiry.id 'closed' %}" class="bg-gray-100 text-gray-700 hover:bg-gray-200 text-xs font-bold px-3.5 py-2 rounded-lg border border-gray-200 transition-colors">Mark Closed</a>
+    </div>
+  </div>
+
+  <div class="p-6 space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label class="block text-xs text-gray-400 font-bold uppercase tracking-wider">Farmer Name</label>
+        <div class="text-base font-semibold text-gray-800 mt-1">{{ enquiry.name }}</div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 font-bold uppercase tracking-wider">Phone Number</label>
+        <div class="text-base font-semibold text-emerald-800 mt-1">
+          <a href="tel:{{ enquiry.phone }}"><i class="fa-solid fa-phone mr-1.5"></i> {{ enquiry.phone }}</a>
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 font-bold uppercase tracking-wider">Email Address</label>
+        <div class="text-sm text-gray-700 mt-1">{{ enquiry.email|default:"Not provided" }}</div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 font-bold uppercase tracking-wider">Village / Location</label>
+        <div class="text-sm text-gray-700 mt-1">{{ enquiry.village|default:"Not provided" }}</div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 font-bold uppercase tracking-wider">Interested Crop</label>
+        <div class="text-sm font-semibold text-emerald-900 mt-1">{{ enquiry.crop_type|default:"Not specified" }}</div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 font-bold uppercase tracking-wider">Product Category</label>
+        <div class="text-sm font-semibold text-purple-900 mt-1">{{ enquiry.product_category|default:"Not specified" }}</div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 font-bold uppercase tracking-wider">Current Status</label>
+        <div class="mt-1">
+          <span class="px-2.5 py-1 rounded-full text-xs font-bold border capitalize {% if enquiry.status == 'new' %}bg-purple-50 text-purple-700 border-purple-100{% elif enquiry.status == 'contacted' %}bg-blue-50 text-blue-700 border-blue-100{% else %}bg-gray-100 text-gray-600 border-gray-200{% endif %}">
+            {{ enquiry.get_status_display }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-gray-100">
+
+    <div>
+      <label class="block text-xs text-gray-400 font-bold uppercase tracking-wider">Subject</label>
+      <div class="text-base font-bold text-gray-800 mt-1.5">{{ enquiry.subject|default:"General enquiry" }}</div>
+    </div>
+
+    <div>
+      <label class="block text-xs text-gray-400 font-bold uppercase tracking-wider">Message Content</label>
+      <div class="p-4 bg-gray-50 rounded-lg border border-gray-100 text-sm text-gray-700 mt-2 whitespace-pre-line leading-relaxed">
+        {{ enquiry.message }}
+      </div>
+    </div>
+
+    <div class="pt-6 border-t border-gray-100 flex items-center justify-between">
+      <a href="{% url 'enquiry_delete' enquiry.id %}" onclick="return confirm('Permanently delete this enquiry?')" class="text-red-600 hover:text-red-900 text-sm font-semibold"><i class="fa-solid fa-trash mr-1"></i> Delete Enquiry</a>
+      <a href="{% url 'enquiry_list' %}" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2.5 rounded-lg transition-colors">Back to Enquiries</a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

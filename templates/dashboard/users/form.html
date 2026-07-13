@@ -1,0 +1,50 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}{% if target_user %}Edit User{% else %}Add User{% endif %} | SRA Admin{% endblock %}
+{% block header_title %}{% if target_user %}Edit User: {{ target_user.username }}{% else %}Add User{% endif %}{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+  <form method="POST" class="p-6 space-y-6">
+    {% csrf_token %}
+    
+    {% if not target_user %}
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Username *</label>
+        <input type="text" name="username" required placeholder="Enter username" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 text-sm">
+      </div>
+    {% endif %}
+
+    <div>
+      <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+      <input type="email" name="email" value="{{ target_user.email|default:'' }}" required placeholder="e.g. user@sriagency.com" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 text-sm">
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold text-gray-700 mb-2">Role *</label>
+      <select name="role" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 text-sm">
+        <option value="store_manager" {% if target_user.role == 'store_manager' %}selected{% endif %}>Store Manager</option>
+        <option value="admin" {% if target_user.role == 'admin' %}selected{% endif %}>Admin</option>
+        <option value="super_admin" {% if target_user.role == 'super_admin' %}selected{% endif %}>Super Admin</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold text-gray-700 mb-2">Password {% if target_user %}(Leave blank to keep current){% else %}*{% endif %}</label>
+      <input type="password" name="password" {% if not target_user %}required{% endif %} placeholder="••••••••" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 text-sm">
+    </div>
+
+    {% if target_user %}
+      <div class="flex items-center">
+        <input type="checkbox" name="is_active" id="is_active" {% if target_user.is_active %}checked{% endif %} class="w-4.5 h-4.5 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500">
+        <label for="is_active" class="ml-2.5 text-sm font-medium text-gray-700">Account Active (allowed to login)</label>
+      </div>
+    {% endif %}
+
+    <div class="pt-4 border-t border-gray-100 flex justify-end space-x-3">
+      <a href="{% url 'user_list' %}" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2.5 rounded-lg transition-colors">Cancel</a>
+      <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-colors shadow-sm">Save User</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

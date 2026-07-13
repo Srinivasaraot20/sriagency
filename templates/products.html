@@ -1,0 +1,1326 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse Sri Ranganatha Agency's products: high-yield seeds, fertilizers, insecticides, fungicides, and micronutrients. Genuine brands at best rates in Nandyal.">
+  {% if selected_category.slug == 'fertilizers' or selected_category.slug == 'water-soluble-fertilizers' %}
+    <meta name="keywords" content="Agricultural Fertilizers Supplier in Nandyal, NPK Fertilizers, Urea Fertilizer, DAP Fertilizer, Organic Fertilizers, Water Soluble Fertilizers, Soil Nutrition Fertilizers, Crop Nutrition Fertilizers, Plant Nutrition Products, Best Agricultural Fertilizers Dealer in Nandyal, Buy Agricultural Fertilizers in Nandyal, Premium Crop Nutrition Fertilizers, Fertilizers for Paddy Crops, Fertilizers for Cotton Crops, Fertilizers for Groundnut Crops, Fertilizers for Maize Crops, Fertilizers for Vegetable Crops, Trusted Agricultural Fertilizers Supplier, Best Agriculture Fertilizer Store in Nandyal">
+  {% elif selected_category.slug == 'insecticides' or selected_category.slug == 'crop-protection' %}
+    <meta name="keywords" content="Agricultural Insecticides Supplier in Nandyal, Crop Protection Insecticides, Pest Control Products, Agriculture Chemicals, Crop Pest Management, Farm Insecticides, Crop Protection Chemicals, Best Agricultural Insecticides Dealer in Nandyal, Effective Pest Control Solutions, Insecticides for Paddy Crops, Insecticides for Cotton Crops, Insecticides for Groundnut Crops, Insecticides for Vegetable Crops, Insecticides for Maize Crops, Professional Agricultural Pest Control Supplier, Trusted Agricultural Insecticides Supplier, Best Agriculture Insecticide Store">
+  {% elif selected_category.slug == 'fungicides' %}
+    <meta name="keywords" content="Agricultural Fungicides Supplier in Nandyal, Plant Disease Control, Crop Protection Fungicides, Disease Protection Chemicals, Crop Health Protection, Plant Protection Products, Best Agricultural Fungicides Dealer in Nandyal, Best Fungicides for Healthy Crops, Fungicides for Paddy Crops, Fungicides for Cotton Crops, Fungicides for Groundnut Crops, Fungicides for Vegetable Crops, Fungicides for Maize Crops, Advanced Agricultural Fungicides Supplier, Complete Agricultural Disease Protection, Trusted Agricultural Fungicides Dealer">
+  {% elif selected_category.slug == 'herbicides' %}
+    <meta name="keywords" content="Agricultural Herbicides Supplier in Nandyal, Weed Control Products, Crop Weed Management, Weed Killer, Herbicides Dealer, Weed Protection Products, Best Agricultural Herbicides Dealer in Nandyal, Herbicides for Paddy Crops, Herbicides for Cotton Crops, Herbicides for Groundnut Crops, Herbicides for Vegetable Crops, Herbicides for Maize Crops, Complete Weed Management Solutions, Trusted Agricultural Herbicides Dealer, Agriculture Herbicides Store in Nandyal, Best Herbicides for Healthy Farming">
+  {% elif selected_category.slug == 'micronutrients' %}
+    <meta name="keywords" content="Agricultural Micronutrients Supplier in Nandyal, Zinc Sulphate, Boron Fertilizer, Calcium Fertilizer, Magnesium Sulphate, Iron Micronutrients, Sulphur Fertilizer, Best Agricultural Micronutrients Dealer in Nandyal, Premium Agricultural Micronutrients, Crop Nutrition Products, Soil Nutrition Products, Micronutrients for Paddy Crops, Micronutrients for Cotton Crops, Micronutrients for Groundnut Crops, Micronutrients for Vegetable Crops, Buy Agricultural Micronutrients in Nandyal, Best Micronutrients for Higher Crop Yield">
+  {% elif selected_category.slug == 'bio-fertilizers' %}
+    <meta name="keywords" content="Agricultural Bio Fertilizers Supplier in Nandyal, Organic Bio Fertilizers, Eco Friendly Bio Fertilizers, Natural Crop Nutrition, Soil Enrichment, Organic Farming Products, Best Bio Fertilizers Dealer in Nandyal, Bio Fertilizers for Sustainable Farming, Bio Fertilizers for Paddy Crops, Bio Fertilizers for Cotton Crops, Bio Fertilizers for Groundnut Crops, Bio Fertilizers for Vegetable Crops, Organic Crop Nutrition Products, Best Natural Fertilizers for Farmers, Trusted Organic Fertilizers Dealer, Leading Bio Fertilizers Supplier in Andhra Pradesh">
+  {% elif selected_category.slug == 'seeds' %}
+    <meta name="keywords" content="Agricultural Seeds Supplier in Nandyal, Hybrid Seeds, Paddy Seeds, Cotton Seeds, Groundnut Seeds, Maize Seeds, Vegetable Seeds, Certified Seeds, Best Agricultural Seeds Dealer in Nandyal, Certified Agricultural Seeds Supplier, High Yield Agricultural Seeds, Buy Agricultural Seeds in Nandyal, Best Hybrid Seeds for Better Yield, Farm Seeds Store in Nandyal, Agriculture Seed Products Dealer, Agricultural Seeds for Healthy Crop Growth, Reliable Agricultural Seeds Distributor, Top Agricultural Seeds Company in Nandyal">
+  {% else %}
+    <meta name="keywords" content="Agricultural Fertilizers Supplier in Nandyal, Agricultural Products, Agriculture Inputs Supplier, Crop Protection Products, Organic Fertilizers, Bio Fertilizers, Micronutrients, Hybrid Seeds, Agriculture Chemicals, Plant Growth Regulators, Crop Care Products, Agricultural Crop Protection Products Supplier, Agricultural Micronutrients Supplier in Nandyal, Agricultural Bio Fertilizers Supplier, Agricultural Seeds Supplier, Agriculture Products for Higher Crop Yield, Agriculture Products for Paddy Farmers, Agriculture Products for Cotton Farmers, Agriculture Products for Groundnut Farmers, Agriculture Products for Maize Farmers, Premium Agriculture Products Supplier, Best Agricultural Products Dealer, Complete Farm Solutions Provider, Agricultural Inputs for Healthy Crop Growth, Agricultural Products Store in Andhra Pradesh, Buy Agricultural Products in Nandyal, SRA Nandyala">
+  {% endif %}
+  <title>Agricultural Seeds, Fertilizers & Pesticides in Nandyal</title>
+  
+  <link rel="canonical" href="https://www.sriagency.in/products.html">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Sri Ranganatha Agency">
+  <meta name="language" content="English">
+  <meta name="theme-color" content="#1b5e20">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sriagency.in/products.html">
+  <meta property="og:title" content="Agricultural Seeds, Fertilizers & Pesticides in Nandyal">
+  <meta property="og:description" content="Browse Sri Ranganatha Agency's products: high-yield seeds, fertilizers, insecticides, fungicides, and micronutrients. Genuine brands at best rates in Nandyal.">
+  <meta property="og:image" content="{% static 'assets/farmer_bg.jpg' %}">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.sriagency.in/products.html">
+  <meta name="twitter:title" content="Agricultural Seeds, Fertilizers & Pesticides in Nandyal">
+  <meta name="twitter:description" content="Browse Sri Ranganatha Agency's products: high-yield seeds, fertilizers, insecticides, fungicides, and micronutrients. Genuine brands at best rates in Nandyal.">
+  <meta name="twitter:image" content="{% static 'assets/farmer_bg.jpg' %}">
+
+  <link rel="stylesheet" href="{% static 'styles.css' %}?v=1.8">
+  <link rel="shortcut icon" href="{% static 'logo.jpeg' %}" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Schema.org JSON-LD Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.sriagency.in/products.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.sriagency.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Products",
+            "item": "https://www.sriagency.in/products.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  
+  <style>
+    /* Specific styles for the products split layout and side column */
+    .products-layout-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      margin-top: 50px;
+      margin-bottom: 80px;
+    }
+    
+    @media (max-width: 992px) {
+      .products-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+    
+    /* Sidebar categories and elements */
+    .sidebar-widget {
+      background: var(--white);
+      border-radius: var(--border-radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 30px;
+      border: 1px solid rgba(27, 94, 32, 0.05);
+    }
+    
+    .category-widget-title {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 18px 24px;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .sidebar-categories-list {
+      list-style: none;
+      padding: 10px 0;
+    }
+    
+    .sidebar-categories-list li a {
+      display: flex;
+      align-items: center;
+      padding: 12px 24px;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--text-color);
+      transition: var(--transition-fast);
+      border-left: 4px solid transparent;
+      gap: 12px;
+    }
+    
+    .sidebar-categories-list li a:hover,
+    .sidebar-categories-list li.active a {
+      background-color: var(--primary-ultra-light);
+      color: var(--primary-color);
+      border-left-color: var(--accent-color);
+    }
+    
+    /* Help widget styling */
+    .help-widget {
+      position: relative;
+      background: linear-gradient(135deg, #f4f9f4 0%, #e8f5e9 100%);
+      border-radius: var(--border-radius-md);
+      padding: 30px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(27, 94, 32, 0.08);
+      overflow: hidden;
+    }
+    
+    .help-widget h3 {
+      font-size: 20px;
+      color: var(--dark-color);
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+    
+    .help-widget p {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    
+    .help-widget .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: var(--border-radius-full);
+      font-weight: 600;
+      font-size: 14px;
+      gap: 8px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(27, 94, 32, 0.15);
+      transition: var(--transition-fast);
+    }
+    
+    .help-widget .btn-contact:hover {
+      background-color: var(--primary-light);
+      transform: translateY(-2px);
+    }
+    
+    .help-farmer-img {
+      margin-top: 25px;
+      border-radius: var(--border-radius-md);
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border: 3px solid var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    /* Main area headers & content */
+    .main-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid rgba(27, 94, 32, 0.08);
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .main-section-title-box h2 {
+      font-size: 24px;
+      color: var(--dark-color);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .main-section-title-box p {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+    
+    .sort-dropdown-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-color);
+    }
+    
+    .sort-select {
+      padding: 8px 16px;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid rgba(27, 94, 32, 0.15);
+      background-color: var(--white);
+      color: var(--text-color);
+      font-weight: 500;
+      cursor: pointer;
+      outline: none;
+    }
+    
+    .products-page-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+      margin-bottom: 40px;
+    }
+    
+    /* Custom Product Cards matching the design image */
+    .custom-prod-card {
+      background: var(--white);
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(27, 94, 32, 0.06);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+    }
+    
+    .custom-prod-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(27, 94, 32, 0.15);
+    }
+    
+    .custom-prod-img-box {
+      height: 200px;
+      background: #fafafa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      border-bottom: 1px solid rgba(27, 94, 32, 0.04);
+      position: relative;
+    }
+    
+    .custom-prod-img-box img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+    
+    .custom-prod-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    
+    .custom-prod-category-badge {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    
+    .badge-nitrogen { background-color: #e3f2fd; color: #1565c0; }
+    .badge-phosphorus { background-color: #fff3e0; color: #e65100; }
+    .badge-complex { background-color: #f3e5f5; color: #4a148c; }
+    .badge-potash { background-color: #efebe9; color: #4e342e; }
+    .badge-general { background-color: var(--primary-ultra-light); color: var(--primary-color); }
+    
+    .custom-prod-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark-color);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    
+    .custom-prod-subtitle {
+      font-size: 12.5px;
+      color: var(--text-light);
+      margin-bottom: 12px;
+      display: block;
+    }
+    
+    .custom-prod-desc {
+      font-size: 13px;
+      color: var(--text-color);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    
+    .custom-prod-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      background-color: var(--white);
+      border: 1.5px solid rgba(27, 94, 32, 0.15);
+      color: var(--primary-color);
+      border-radius: var(--border-radius-sm);
+      font-weight: 600;
+      font-size: 13.5px;
+      transition: var(--transition-fast);
+      cursor: pointer;
+      gap: 6px;
+    }
+    
+    .custom-prod-btn:hover {
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-color: var(--primary-color);
+    }
+    
+    .custom-prod-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+    
+    /* Category Banners & Links */
+    .section-category-block {
+      margin-bottom: 50px;
+    }
+    
+    .view-all-category-btn-box {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .btn-view-all-category {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 12px 30px;
+      border-radius: var(--border-radius-full);
+      font-weight: 600;
+      font-size: 14px;
+      gap: 8px;
+      transition: var(--transition-fast);
+    }
+    
+    .btn-view-all-category:hover {
+      background-color: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(27, 94, 32, 0.15);
+    }
+    
+    .link-view-all-categories {
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-fast);
+    }
+    
+    .link-view-all-categories:hover {
+      color: var(--accent-color);
+    }
+    
+    /* 3-Column Category Promo Grid */
+    .promo-category-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+    
+    .promo-category-card {
+      background: var(--white);
+      border-radius: var(--border-radius-md);
+      border: 1px solid rgba(27, 94, 32, 0.05);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      transition: var(--transition-smooth);
+    }
+    
+    .promo-category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(27, 94, 32, 0.12);
+    }
+    
+    .promo-category-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .promo-category-badge-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--primary-ultra-light);
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+    
+    .promo-category-info h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark-color);
+      margin-bottom: 6px;
+    }
+    
+    .promo-category-info p {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    
+    .promo-category-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 13px;
+      border: 1px solid rgba(27, 94, 32, 0.15);
+      padding: 8px 16px;
+      border-radius: var(--border-radius-sm);
+      align-self: flex-start;
+      transition: var(--transition-fast);
+    }
+    
+    .promo-category-btn:hover {
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-color: var(--primary-color);
+    }
+    
+    .promo-category-img-box {
+      width: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .promo-category-img-box img {
+      max-height: 120px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+    
+    /* 4-Column Category Promo Grid */
+    .promo-category-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .promo-category-card-small {
+      background: var(--white);
+      border-radius: var(--border-radius-md);
+      border: 1px solid rgba(27, 94, 32, 0.05);
+      box-shadow: var(--shadow-sm);
+      padding: 20px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+    }
+    
+    .promo-category-card-small:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .promo-category-card-small .promo-category-badge-icon {
+      margin-bottom: 8px;
+    }
+    
+    .promo-category-card-small h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .promo-category-card-small p {
+      font-size: 12.5px;
+      color: var(--text-light);
+      margin-bottom: 12px;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+    
+    .promo-category-card-small img {
+      max-height: 90px;
+      max-width: 100%;
+      object-fit: contain;
+      margin: 10px auto;
+    }
+    
+    .products-hero-banner {
+      width: 100%;
+      background-color: var(--white);
+      border-bottom: 3px solid var(--primary-color);
+      overflow: hidden;
+    }
+    
+    .hero-banner-img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    /* Search Bar inside Main content */
+    .products-search-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      background: var(--white);
+      padding: 6px;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid rgba(27, 94, 32, 0.12);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .products-search-input {
+      flex-grow: 1;
+      padding: 10px 16px;
+      font-size: 14.5px;
+      background: transparent;
+      color: var(--text-color);
+    }
+    
+    .products-search-btn {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 10px 24px;
+      border-radius: var(--border-radius-sm);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    
+    .products-search-btn:hover {
+      background-color: var(--primary-light);
+    }
+    @media (max-width: 1280px) {
+      .products-page-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 1024px) {
+      .products-layout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .products-page-grid, .promo-category-grid-4, .promo-category-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-page-grid, .promo-category-grid-4, .promo-category-grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-info">
+        <div class="top-bar-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span>Shop No. 27, NTR Complex, Atmakur Road, Telugu Peta, Nandyala, AP - 518501</span>
+        </div>
+        <div class="top-bar-item">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+          <span>Mon - Sat: 7:30 AM - 8:00 PM</span>
+        </div>
+        <div class="top-bar-item">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <span>+91 70932 71715</span>
+        </div>
+      </div>
+      <div class="top-bar-socials">
+        <a href="https://www.facebook.com/profile.php?id=61589202701040" target="_blank" class="top-bar-social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m13 2h-2.5A3.5 3.5 0 0 0 12 8.5V11h-2v3h2v7h3v-7h3v-3h-3V9a1 1 0 0 1 1-1h2V5z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/sriranganathaagency/" target="_blank" class="top-bar-social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m8.4 4.5a.9.9 0 0 1 .9.9.9.9 0 0 1-.9.9.9.9 0 0 1-.9-.9.9.9 0 0 1 .9-.9M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="main-header">
+    <div class="container">
+      <a href="{% url 'home' %}" class="logo">
+        <div class="logo-icon">
+          <img src="{% static 'logo.jpeg' %}" alt="Sri Ranganatha Agency SRA Logo" loading="lazy">
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">SRI RANGANATHA</span>
+          <span class="logo-subtitle-brand">- AGENCY -</span>
+          <span class="logo-tagline">Delivering Quality Agri Solutions for Farmers</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+          <li><a href="{% url 'about' %}" class="nav-link">About Us</a></li>
+          <li class="nav-item-dropdown">
+            <a href="{% url 'products' %}" class="nav-link active">
+              Products
+              <svg class="dropdown-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </a>
+          </li>
+          <li><a href="{% url 'contact' %}" class="nav-link">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <!-- CTA / Login actions -->
+      <div class="header-actions">
+        <a href="{% url 'login' %}" class="btn btn-login" aria-label="Login to Farmer Portal">
+          <svg viewBox="0 0 24 24" style="margin-right:8px; vertical-align:middle; width:14px; height:14px; fill:currentColor;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          Login
+        </a>
+      </div>
+
+      <!-- Hamburger toggle button -->
+      <button class="hamburger" aria-label="Toggle Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- PRODUCTS HERO SECTION -->
+  <section class="products-hero-banner">
+    <img src="{% static 'assets/pro.png' %}" alt="Sri Ranganatha Agency - Your Trusted Partner in Agriculture" class="hero-banner-img" loading="lazy">
+  </section>
+
+  <!-- MAIN PRODUCTS SECTION -->
+  <div class="container">
+    <div class="products-layout-grid">
+      
+      <!-- SIDEBAR -->
+      <aside>
+        <!-- Product Categories Widget -->
+        <div class="sidebar-widget">
+          <div class="category-widget-title">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8 2 4 8 3 15h18c-1-7-5-13-9-13z"></path></svg>
+            Product Categories
+          </div>
+          <ul class="sidebar-categories-list">
+            <li class="{% if not selected_category_slug %}active{% endif %}">
+              <a href="{% url 'products' %}">🌱 All Products</a>
+            </li>
+            {% for category in categories %}
+              <li class="{% if selected_category_slug == category.slug %}active{% endif %}">
+                <a href="{% url 'products' %}?category={{ category.slug }}">
+                  {% if "fertil" in category.name|lower %}🍂
+                  {% elif "insect" in category.name|lower %}🐛
+                  {% elif "fungi" in category.name|lower %}🍄
+                  {% elif "herb" in category.name|lower %}🌿
+                  {% elif "micro" in category.name|lower %}🧪
+                  {% elif "seed" in category.name|lower %}🌱
+                  {% elif "regulator" in category.name|lower %}⚡
+                  {% else %}☘️{% endif %}
+                  {{ category.name }}
+                </a>
+              </li>
+            {% empty %}
+              <!-- Mock Categories list matching design -->
+              <li class="active"><a href="#">🍂 Fertilisers</a></li>
+              <li><a href="#">🐛 Insecticides</a></li>
+              <li><a href="#">🍄 Fungicides</a></li>
+              <li><a href="#">🌿 Herbicides & Weedicides</a></li>
+              <li><a href="#">🧪 Micronutrients</a></li>
+              <li><a href="#">☘️ Bio Fertilisers</a></li>
+              <li><a href="#">🌱 Seeds</a></li>
+              <li><a href="#">⚡ Plant Growth Regulators</a></li>
+              <li><a href="#">📦 Agri Accessories</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        
+        <!-- Need Help Choosing Card -->
+        <div class="help-widget">
+          <h3>Need Help Choosing?</h3>
+          <p>Our experts are here to help you choose the right products for your crop.</p>
+          <a href="https://wa.me/917093271715?text=Hello%20SRA%2C%20I%20need%20expert%20guidance%20for%20my%20crops." target="_blank" class="btn-contact">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align: middle;"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            Contact Our Experts
+          </a>
+          <img src="{% static 'assets/farmer_hero.jpg' %}" alt="Local Indian Farmer SRA" class="help-farmer-img" loading="lazy">
+        </div>
+      </aside>
+      
+      <!-- MAIN CONTENT AREA -->
+      <main>
+        
+        <!-- Search and Sort Panel -->
+        <form method="GET" action="{% url 'products' %}" class="products-search-bar">
+          {% if selected_category_slug %}
+            <input type="hidden" name="category" value="{{ selected_category_slug }}">
+          {% endif %}
+          <input type="text" name="q" value="{{ q|default_if_none:'' }}" placeholder="Search products, brands or chemical names..." class="products-search-input">
+          <button type="submit" class="products-search-btn">Search</button>
+        </form>
+
+        <div class="main-section-header">
+          <div class="main-section-title-box">
+            <h2>
+              {% if selected_category %}
+                {{ selected_category.name }}
+              {% else %}
+                🌱 Featured Agri Inputs
+              {% endif %}
+            </h2>
+            <p>
+              {% if selected_category %}
+                {{ selected_category.description|default:"Quality crop inputs for maximum yield." }}
+              {% else %}
+                Essential agricultural products for healthy growth and maximum yield.
+              {% endif %}
+            </p>
+          </div>
+          
+          <div class="sort-dropdown-box">
+            <span>Sort by:</span>
+            <select class="sort-select" onchange="applySorting(this.value)">
+              <option value="featured" {% if sort == 'featured' or not sort %}selected{% endif %}>Featured</option>
+              <option value="price_low" {% if sort == 'price_low' %}selected{% endif %}>Price: Low to High</option>
+              <option value="price_high" {% if sort == 'price_high' %}selected{% endif %}>Price: High to Low</option>
+              <option value="name" {% if sort == 'name' %}selected{% endif %}>Alphabetical</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- PRODUCTS DISPLAY -->
+        {% if products %}
+          <div class="products-page-grid">
+            {% for product in products %}
+              <div class="custom-prod-card">
+                <div class="custom-prod-img-box">
+                  <img src="{% if product.thumbnail %}{{ product.thumbnail.url }}?v={{ product.updated_at|date:'U' }}{% elif product.image %}{{ product.image.url }}?v={{ product.updated_at|date:'U' }}{% endif %}" alt="{{ product.name }} - Genuine Agricultural Input at Sri Ranganatha Agency Nandyal" loading="lazy">
+                </div>
+                <div class="custom-prod-body">
+                  <span class="custom-prod-category-badge {% if 'nitrogen' in product.product_type|lower %}badge-nitrogen{% elif 'phosph' in product.product_type|lower %}badge-phosphorus{% elif 'potash' in product.product_type|lower %}badge-potash{% else %}badge-general{% endif %}">
+                    {{ product.product_type|default:product.category.name }}
+                  </span>
+                  <h3 class="custom-prod-title">{{ product.name }}</h3>
+                  <span class="custom-prod-subtitle">{{ product.brand|default:"Sri Ranganatha Agency" }}</span>
+                  <p class="custom-prod-desc">{{ product.short_description|truncatechars:90 }}</p>
+                  <button onclick="showProductDetails('{{ product.id }}')" class="custom-prod-btn">
+                    View Details 
+                    <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                  </button>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          
+          <!-- Database is empty: fallback mock data exactly as design image -->
+          <div class="section-category-block">
+            <!-- Fertilisers Category Block -->
+            <div class="products-page-grid">
+              <!-- Card 1: Urea 46% -->
+              <div class="custom-prod-card">
+                <div class="custom-prod-img-box">
+                  <img src="{% static 'assets/urea_bag.jpg' %}" alt="Urea 46% Nitrogen Fertilizer at Sri Ranganatha Agency Nandyal" loading="lazy">
+                </div>
+                <div class="custom-prod-body">
+                  <span class="custom-prod-category-badge badge-nitrogen">Nitrogen Fertilizer</span>
+                  <h3 class="custom-prod-title">Urea 46%</h3>
+                  <span class="custom-prod-subtitle">IFFCO Fertilizer</span>
+                  <p class="custom-prod-desc">High quality nitrogen for vigorous growth and better yield.</p>
+                  <button onclick="showProductDetails('urea')" class="custom-prod-btn">
+                    View Details
+                    <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card 2: DAP 18:46:0 -->
+              <div class="custom-prod-card">
+                <div class="custom-prod-img-box">
+                  <img src="{% static 'assets/dap_bag.jpg' %}" alt="DAP 18:46:0 Phosphorus Fertilizer at Sri Ranganatha Agency Nandyal" loading="lazy">
+                </div>
+                <div class="custom-prod-body">
+                  <span class="custom-prod-category-badge badge-phosphorus">Phosphorus Fertilizer</span>
+                  <h3 class="custom-prod-title">DAP 18:46:0</h3>
+                  <span class="custom-prod-subtitle">SRA Premium</span>
+                  <p class="custom-prod-desc">Promotes root development and early crop growth.</p>
+                  <button onclick="showProductDetails('dap')" class="custom-prod-btn">
+                    View Details
+                    <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card 3: NPK 19:19:19 -->
+              <div class="custom-prod-card">
+                <div class="custom-prod-img-box">
+                  <img src="{% static 'assets/soil_sprout.jpg' %}" alt="NPK 19:19:19 Complex Fertilizer at Sri Ranganatha Agency Nandyal" loading="lazy">
+                </div>
+                <div class="custom-prod-body">
+                  <span class="custom-prod-category-badge badge-complex">Complex Fertilizer</span>
+                  <h3 class="custom-prod-title">NPK 19:19:19</h3>
+                  <span class="custom-prod-subtitle">Water Soluble Fertilizer</span>
+                  <p class="custom-prod-desc">Balanced nutrition for all stages of crop growth.</p>
+                  <button onclick="showProductDetails('npk')" class="custom-prod-btn">
+                    View Details
+                    <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card 4: MOP 60% -->
+              <div class="custom-prod-card">
+                <div class="custom-prod-img-box">
+                  <img src="{% static 'assets/soil_sprout.jpg' %}" alt="MOP 60% Potash Fertilizer at Sri Ranganatha Agency Nandyal" loading="lazy">
+                </div>
+                <div class="custom-prod-body">
+                  <span class="custom-prod-category-badge badge-potash">Potash Fertilizer</span>
+                  <h3 class="custom-prod-title">MOP 60%</h3>
+                  <span class="custom-prod-subtitle">Potash Fertilizer</span>
+                  <p class="custom-prod-desc">Improves quality, yield and disease resistance.</p>
+                  <button onclick="showProductDetails('mop')" class="custom-prod-btn">
+                    View Details
+                    <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="view-all-category-btn-box">
+              <button class="btn-view-all-category">View All Fertilisers &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Crop Protection Solutions Promo Section -->
+          <div class="section-category-block" style="margin-top: 50px;">
+            <div class="main-section-header">
+              <div class="main-section-title-box">
+                <h2>🛡️ Crop Protection Solutions</h2>
+                <p>Protect your crops from pests, diseases and weeds with our effective solutions.</p>
+              </div>
+              <a href="#" class="link-view-all-categories">View All Categories &rarr;</a>
+            </div>
+            
+            <div class="promo-category-grid-3">
+              <!-- Insecticides -->
+              <div class="promo-category-card">
+                <div class="promo-category-info">
+                  <div class="promo-category-badge-icon">🐛</div>
+                  <h3>Insecticides</h3>
+                  <p>Effective control of aphids, thrips, caterpillars, borers and more.</p>
+                  <button onclick="showProductDetails('emamectin')" class="promo-category-btn">Explore Products</button>
+                </div>
+                <div class="promo-category-img-box">
+                  <img src="{% static 'assets/emamectin_bottle.jpg' %}" alt="Insecticides" loading="lazy">
+                </div>
+              </div>
+
+              <!-- Fungicides -->
+              <div class="promo-category-card">
+                <div class="promo-category-info">
+                  <div class="promo-category-badge-icon">🍄</div>
+                  <h3>Fungicides</h3>
+                  <p>Protects crops from fungal diseases like blight, mildew, leaf spots and more.</p>
+                  <button onclick="showProductDetails('caltan')" class="promo-category-btn">Explore Products</button>
+                </div>
+                <div class="promo-category-img-box">
+                  <img src="{% static 'assets/caltan_bottle.jpg' %}" alt="Fungicides" loading="lazy">
+                </div>
+              </div>
+
+              <!-- Herbicides -->
+              <div class="promo-category-card">
+                <div class="promo-category-info">
+                  <div class="promo-category-badge-icon">🌿</div>
+                  <h3>Herbicides & Weedicides</h3>
+                  <p>Control unwanted weeds and ensure healthy crop growth.</p>
+                  <button onclick="showProductDetails('herbicide_24d')" class="promo-category-btn">Explore Products</button>
+                </div>
+                <div class="promo-category-img-box">
+                  <img src="{% static 'assets/herbicide_24d_bottle.jpg' %}" alt="Herbicides" loading="lazy">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Micronutrients & Bio Solutions Section -->
+          <div class="section-category-block" style="margin-top: 50px;">
+            <div class="main-section-header">
+              <div class="main-section-title-box">
+                <h2>🧪 Micronutrients & Bio Solutions</h2>
+                <p>Specialized nutrition for healthier plants and sustainable farming.</p>
+              </div>
+            </div>
+            
+            <div class="promo-category-grid-4">
+              <!-- Micronutrients -->
+              <div class="promo-category-card-small">
+                <div class="promo-category-badge-icon">🧪</div>
+                <h3>Micronutrients</h3>
+                <p>Zinc, Boron, Iron, Magnesium and more to correct deficiencies.</p>
+                <img src="{% static 'assets/caltan_bottle.jpg' %}" alt="Micronutrients" loading="lazy">
+                <button class="custom-prod-btn" style="margin-top:12px;">Explore Products</button>
+              </div>
+
+              <!-- Bio Fertilisers -->
+              <div class="promo-category-card-small">
+                <div class="promo-category-badge-icon">☘️</div>
+                <h3>Bio Fertilisers</h3>
+                <p>Improve soil health and nutrient availability naturally.</p>
+                <img src="{% static 'assets/dap_bag.jpg' %}" alt="Bio Fertilisers" loading="lazy">
+                <button class="custom-prod-btn" style="margin-top:12px;">Explore Products</button>
+              </div>
+
+              <!-- Organic Fertilisers -->
+              <div class="promo-category-card-small">
+                <div class="promo-category-badge-icon">🍂</div>
+                <h3>Organic Fertilisers</h3>
+                <p>Enhance soil fertility and support sustainable agriculture.</p>
+                <img src="{% static 'assets/urea_bag.jpg' %}" alt="Organic Fertilisers" loading="lazy">
+                <button class="custom-prod-btn" style="margin-top:12px;">Explore Products</button>
+              </div>
+
+              <!-- PGR -->
+              <div class="promo-category-card-small">
+                <div class="promo-category-badge-icon">⚡</div>
+                <h3>Plant Growth Regulators</h3>
+                <p>Regulate plant growth and improve yield & quality.</p>
+                <img src="{% static 'assets/emamectin_bottle.jpg' %}" alt="PGR" loading="lazy">
+                <button class="custom-prod-btn" style="margin-top:12px;">Explore Products</button>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </main>
+    </div>
+  </div>
+
+  <!-- VALUE STRIP PRE-FOOTER -->
+  <section class="value-strip">
+    <div class="container">
+      <div class="value-strip-grid">
+        <div class="value-strip-item">
+          <div class="value-strip-icon">🎁</div>
+          <div class="value-strip-text">
+            <span class="value-strip-title">100% Authentic Products</span>
+            <span class="value-strip-subtitle">From trusted brands and manufacturers</span>
+          </div>
+        </div>
+        <div class="value-strip-item">
+          <div class="value-strip-icon">🛡️</div>
+          <div class="value-strip-text">
+            <span class="value-strip-title">Best Quality Assurance</span>
+            <span class="value-strip-subtitle">Tested and proven for best results</span>
+          </div>
+        </div>
+        <div class="value-strip-item">
+          <div class="value-strip-icon">👨‍🏫</div>
+          <div class="value-strip-text">
+            <span class="value-strip-title">Expert Guidance</span>
+            <span class="value-strip-subtitle">Professional advice for the right product</span>
+          </div>
+        </div>
+        <div class="value-strip-item">
+          <div class="value-strip-icon">💰</div>
+          <div class="value-strip-text">
+            <span class="value-strip-title">Affordable Prices</span>
+            <span class="value-strip-subtitle">Best prices for maximum value</span>
+          </div>
+        </div>
+        <div class="value-strip-item">
+          <div class="value-strip-icon">⏰</div>
+          <div class="value-strip-text">
+            <span class="value-strip-title">Timely Availability</span>
+            <span class="value-strip-subtitle">On-time supply in all seasons</span>
+          </div>
+        </div>
+        <div class="value-strip-item">
+          <div class="value-strip-icon">🧑‍🌾</div>
+          <div class="value-strip-text">
+            <span class="value-strip-title">Farmer Support</span>
+            <span class="value-strip-subtitle">We are always here to support you</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-col footer-brand">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
+            <img src="{% static 'logo.jpeg' %}" alt="SRA Logo" style="width:40px; height:40px; border-radius:50%;" loading="lazy">
+            <h4 style="color:#ffffff; margin:0; font-size:18px;">Sri Ranganatha Agency</h4>
+          </div>
+          <p>Delivering quality agricultural solutions, fertilisers, insecticides, herbicides, and crop protection inputs to farmers in Rayalaseema region.</p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=61589202701040" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m13 2h-2.5A3.5 3.5 0 0 0 12 8.5V11h-2v3h2v7h3v-7h3v-3h-3V9a1 1 0 0 1 1-1h2V5z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/sriranganathaagency/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m8.4 4.5a.9.9 0 0 1 .9.9.9.9 0 0 1-.9.9.9.9 0 0 1-.9-.9.9.9 0 0 1 .9-.9M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+             <li><a href="{% url 'home' %}">Home</a></li>
+             <li><a href="{% url 'about' %}">About Us</a></li>
+             <li><a href="{% url 'products' %}">Products</a></li>
+             <li><a href="{% url 'faq' %}">FAQ</a></li>
+             <li><a href="{% url 'home' %}#solutions">Crop Solutions</a></li>
+             <li><a href="{% url 'home' %}#blog">Blog</a></li>
+             <li><a href="{% url 'contact' %}">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Our Products</h4>
+          <ul class="footer-links">
+            <li><a href="{% url 'products' %}?category=fertilisers">Fertilisers</a></li>
+            <li><a href="{% url 'products' %}?category=insecticides">Insecticides</a></li>
+            <li><a href="{% url 'products' %}?category=fungicides">Fungicides</a></li>
+            <li><a href="{% url 'products' %}?category=herbicides-weedicides">Herbicides</a></li>
+            <li><a href="{% url 'products' %}?category=micronutrients">Micronutrients</a></li>
+            <li><a href="{% url 'products' %}?category=bio-fertilisers">Bio Fertilisers</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Info</h4>
+          <ul class="footer-links">
+            <li style="color: #a3b8a3; font-size: 13px; margin-bottom: 8px;">
+              <strong>Address:</strong> Shop No : 27, NTR Complex, Atmakur Rd, Telugu Peta, Nandyala, Andhra Pradesh 518501
+            </li>
+            <li style="color: #a3b8a3; font-size: 13px; margin-bottom: 8px;">
+              <strong>Phone:</strong> <a href="tel:+917093271715" style="color: #ffffff;">+91 70932 71715</a>
+            </li>
+            <li style="color: #a3b8a3; font-size: 13px; margin-bottom: 8px;">
+              <strong>Email:</strong> <a href="mailto:sriranganathapnf@gmail.com" style="color: #ffffff;">sriranganathapnf@gmail.com</a>
+            </li>
+            <li style="color: #a3b8a3; font-size: 13px;">
+              <strong>Website:</strong> <a href="https://www.sriagency.in" style="color: #ffffff;">www.sriagency.in</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sri Ranganatha Agency. All Rights Reserved. Designed with ❤️ for Farmers</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PRODUCT DETAILS MODAL -->
+  <div id="productModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 9999; align-items: center; justify-content: center; padding: 20px; transition: opacity 0.3s ease;">
+    <div class="product-modal-card" style="background-color: var(--white); width: 100%; max-width: 700px; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; position: relative; max-height: 90vh; display: flex; flex-direction: column;">
+      <button class="modal-close-btn" onclick="closeProductModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 28px; color: var(--text-light); cursor: pointer; z-index: 10; transition: color 0.2s;">&times;</button>
+      
+      <div class="product-modal-body" style="overflow-y: auto; padding: 30px;">
+        <div class="product-modal-grid-layout" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; align-items: start;">
+          <div class="product-modal-media" style="background-color: #fafafa; border-radius: var(--border-radius-md); padding: 20px; display: flex; align-items: center; justify-content: center; height: 260px; border: 1px solid rgba(27, 94, 32, 0.05);">
+            <img id="modalProductImg" src="" alt="Product Image" style="max-width: 100%; max-height: 100%; object-fit: contain;" loading="lazy">
+          </div>
+          
+          <div class="product-modal-content">
+            <span id="modalProductBadge" class="custom-prod-category-badge" style="margin-bottom: 8px;">Badge</span>
+            <h2 id="modalProductTitle" style="font-size: 26px; color: var(--dark-color); font-weight: 800; margin-bottom: 4px; line-height: 1.2;">Product Name</h2>
+            <span id="modalProductSub" class="custom-prod-subtitle" style="display: block; margin-bottom: 20px;">Sub Title</span>
+            
+            <div class="product-modal-specs-list" style="margin-bottom: 20px; font-size: 14px; border-bottom: 1px solid rgba(27, 94, 32, 0.08); padding-bottom: 15px;">
+              <div style="margin-bottom: 6px;"><strong>Brand:</strong> <span id="modalProductBrand" style="color: var(--text-color);">Brand</span></div>
+              <div><strong>Technical Name:</strong> <span id="modalProductTechnical" style="color: var(--text-color);">Technical</span></div>
+            </div>
+
+            <div class="product-modal-info-section" style="margin-bottom: 16px;">
+              <h4 style="font-size: 14px; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">💡 Mode of Action / Usage</h4>
+              <p id="modalProductMode" style="font-size: 14px; color: var(--text-color); line-height: 1.5; margin: 0;">Details...</p>
+            </div>
+
+            <div class="product-modal-info-section" style="margin-bottom: 16px;">
+              <h4 style="font-size: 14px; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">🌾 Recommended Crops</h4>
+              <p id="modalProductCrops" style="font-size: 14px; color: var(--text-color); line-height: 1.5; margin: 0;">Crops...</p>
+            </div>
+
+            <div class="product-modal-info-section" style="margin-bottom: 25px;">
+              <h4 style="font-size: 14px; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">✅ Key Benefits</h4>
+              <p id="modalProductBenefits" style="font-size: 14px; color: var(--text-color); line-height: 1.5; margin: 0;">Benefits...</p>
+            </div>
+
+            <div class="product-modal-actions-box" style="display: flex; gap: 12px;">
+              <a id="modalWhatsAppBtn" href="" target="_blank" class="btn" style="background-color: #25d366; color: var(--white); flex: 1; justify-content: center; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 10px;">
+                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.78 14.15c-.24.69-1.42 1.35-1.95 1.4-1.33.12-3.14-.38-5.32-2.31-2.18-1.93-3.08-4.05-3.32-4.74-.24-.69.04-1.12.32-1.4.24-.24.53-.58.8-.87.16-.16.32-.4.43-.53.11-.13.16-.27.24-.4.24-.53.08-1.04-.08-1.45-.16-.4-1.45-3.52-1.99-4.83-.53-1.32-1.07-1.09-1.45-1.09-.37 0-.8 0-1.22.05-.43.05-1.12.21-1.7.8-.59.59-2.23 2.18-2.23 5.32s2.28 6.16 2.6 6.59c.32.43 4.48 6.86 10.87 9.61 1.52.65 2.7 1.04 3.63 1.33 1.53.48 2.92.41 4.02.25 1.22-.18 2.76-1.13 3.14-2.18.38-1.04.38-1.93.27-2.12-.11-.19-.4-.32-.85-.56z"/></svg> WhatsApp Chat
+              </a>
+              <a id="modalContactBtn" href="{% url 'contact' %}" class="btn" style="background-color: var(--primary-color); color: var(--white); flex: 1; justify-content: center; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 10px;">
+                📬 Fill Enquiry
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'script.js' %}?v=1.5"></script>
+  <script>
+    // Product details mock database lookup
+    const fallbackProducts = {
+      urea: {
+        title: "Urea 46%",
+        badge: "Nitrogen Fertilizer",
+        subtitle: "IFFCO Fertilizer",
+        img: "{% static 'assets/urea_bag.jpg' %}",
+        brand: "IFFCO",
+        technical: "Urea 46% N",
+        mode: "Highly concentrated nitrogenous fertilizer applied as soil dressing or foliar spray to stimulate vegetative growth.",
+        crops: "Paddy, Cotton, Wheat, Maize, Sugarcane, Vegetables.",
+        benefits: "Accelerates growth, improves leaf protein content, increases crop yield and greenness."
+      },
+      dap: {
+        title: "DAP 18:46:0",
+        badge: "Phosphorus Fertilizer",
+        subtitle: "SRA Premium",
+        img: "{% static 'assets/dap_bag.jpg' %}",
+        brand: "SRA Brand",
+        technical: "Di-Ammonium Phosphate",
+        mode: "Provides correct proportion of Nitrogen and Phosphorus at root zones for early root development and establishment.",
+        crops: "Paddy, Groundnut, Pulses, Cotton, Chillies, Fruits.",
+        benefits: "Fosters robust root networks, improves crop resilience, aids early maturity."
+      },
+      npk: {
+        title: "NPK 19:19:19",
+        badge: "Complex Fertilizer",
+        subtitle: "Water Soluble Fertilizer",
+        img: "{% static 'assets/soil_sprout.jpg' %}",
+        brand: "SRA Premium",
+        technical: "NPK 19:19:19 Soluble",
+        mode: "Foliar spray or fertigation input that supplies uniform Nitrogen, Phosphorus, and Potassium during early growth stages.",
+        crops: "Paddy, Tomato, Cotton, Chillies, Citrus, Grapes.",
+        benefits: "Ensures balanced vegetative and reproductive development, completely water soluble."
+      },
+      mop: {
+        title: "MOP 60%",
+        badge: "Potash Fertilizer",
+        subtitle: "Potash Fertilizer",
+        img: "{% static 'assets/soil_sprout.jpg' %}",
+        brand: "SRA Premium",
+        technical: "Muriate of Potash (KCl)",
+        mode: "Improves water regulation, enzyme activation, carbohydrate formation and translocation.",
+        crops: "Paddy, Cotton, Groundnut, Sugarcane, Banana, Potato.",
+        benefits: "Enhances grain filling, disease resistance, drought tolerance and post-harvest shelf life."
+      },
+      emamectin: {
+        title: "Emamectin 5% SG",
+        badge: "Insecticide",
+        subtitle: "Insecticide Solutions",
+        img: "{% static 'assets/emamectin_bottle.jpg' %}",
+        brand: "SRA Protect",
+        technical: "Emamectin Benzoate 5% SG",
+        mode: "Non-systemic insecticide which penetrates leaf tissues by trans-laminar movement, paralyzing lepidopteran pests.",
+        crops: "Cotton, Okra, Cabbage, Chilli, Brinjal, Grapes.",
+        benefits: "Effective control of bollworms, fruit and shoot borers, diamondback moth; safe for beneficial insects."
+      },
+      caltan: {
+        title: "Caltan",
+        badge: "Fungicide",
+        subtitle: "Fungicide Solutions",
+        img: "{% static 'assets/caltan_bottle.jpg' %}",
+        brand: "SRA Protect",
+        technical: "Contact & Systemic Fungicide",
+        mode: "Dual action fungicide offering protective and curative action against fungal pathogens, stopping spore germination.",
+        crops: "Paddy, Mango, Tomato, Potato, Groundnut, Grapes.",
+        benefits: "Controls blast, leaf spot, early and late blight, powdery mildew, ensuring clean crops."
+      },
+      herbicide_24d: {
+        title: "2,4-D",
+        badge: "Herbicide",
+        subtitle: "Herbicide Solutions",
+        img: "{% static 'assets/herbicide_24d_bottle.jpg' %}",
+        brand: "SRA Protect",
+        technical: "2,4-Dichlorophenoxyacetic acid",
+        mode: "Selective systemic herbicide which mimics natural growth hormones, disrupting growth in broadleaf weeds.",
+        crops: "Paddy, Wheat, Sugarcane, Maize, Non-cropped areas.",
+        benefits: "Controls broadleaf weeds effectively without harming grass crops; rapid action."
+      }
+    };
+
+    window.djangoProductData = {
+      {% for product in products %}
+      "{{ product.id }}": {
+        title: "{{ product.name|escapejs }}",
+        badge: "{{ product.category.name|escapejs }}",
+        subtitle: "{{ product.product_type|escapejs }}",
+        img: "{% if product.image %}{{ product.image.url }}?v={{ product.updated_at|date:'U' }}{% endif %}",
+        thumb: "{% if product.thumbnail %}{{ product.thumbnail.url }}?v={{ product.updated_at|date:'U' }}{% elif product.image %}{{ product.image.url }}?v={{ product.updated_at|date:'U' }}{% endif %}",
+        brand: "{{ product.brand|escapejs }}",
+        technical: "{{ product.sku|escapejs }}",
+        mode: "{{ product.short_description|escapejs }}",
+        crops: "{{ product.suitable_crops|escapejs }}",
+        benefits: "{{ product.benefits|escapejs }}",
+        category: "{{ product.category.name|escapejs }}"
+      },
+      {% endfor %}
+    };
+
+    function showProductDetails(id) {
+      const modal = document.getElementById('productModal');
+      const data = window.djangoProductData[id] || fallbackProducts[id];
+      if (!data) return;
+
+      document.getElementById('modalProductImg').src = data.img;
+      document.getElementById('modalProductBadge').textContent = data.badge;
+      document.getElementById('modalProductTitle').textContent = data.title;
+      document.getElementById('modalProductSub').textContent = data.subtitle;
+      document.getElementById('modalProductBrand').textContent = data.brand;
+      document.getElementById('modalProductTechnical').textContent = data.technical || 'N/A';
+      document.getElementById('modalProductMode').textContent = data.mode || 'N/A';
+      document.getElementById('modalProductCrops').textContent = data.crops || 'N/A';
+      document.getElementById('modalProductBenefits').textContent = data.benefits || 'N/A';
+
+      // Set contact links
+      const phone = "917093271715";
+      document.getElementById('modalWhatsAppBtn').href = `https://wa.me/${phone}?text=Hello%20SRA%2C%20I%20want%20to%20enquire%20about%20${encodeURIComponent(data.title)}.`;
+
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductModal() {
+      document.getElementById('productModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('productModal');
+      if (event.target == modal) {
+        closeProductModal();
+      }
+    }
+
+    function applySorting(value) {
+      const urlParams = new URLSearchParams(window.location.search);
+      urlParams.set('sort', value);
+      window.location.search = urlParams.toString();
+    }
+  </script>
+</body>
+</html>

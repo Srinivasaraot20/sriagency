@@ -1,0 +1,42 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}{% if category %}Edit Category{% else %}Add Category{% endif %} | SRA Admin{% endblock %}
+{% block header_title %}{% if category %}Edit Category: {{ category.name }}{% else %}Add Category{% endif %}{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+  <form method="POST" enctype="multipart/form-data" class="p-6 space-y-6">
+    {% csrf_token %}
+    
+    <div>
+      <label class="block text-sm font-semibold text-gray-700 mb-2">Category Name *</label>
+      <input type="text" name="name" value="{{ category.name|default:'' }}" required placeholder="e.g. Fertilisers" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-shadow">
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+      <textarea name="description" rows="4" placeholder="Enter category description..." class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-shadow">{{ category.description|default:'' }}</textarea>
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold text-gray-700 mb-2">Category Image</label>
+      {% if category.image %}
+        <div class="mb-3">
+          <img src="{{ category.image.url }}" alt="Category Image" class="w-32 h-32 object-cover rounded-lg border border-gray-200" loading="lazy">
+        </div>
+      {% endif %}
+      <input type="file" name="image" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 cursor-pointer">
+    </div>
+
+    <div class="flex items-center">
+      <input type="checkbox" name="is_active" id="is_active" {% if category %}{% if category.is_active %}checked{% endif %}{% else %}checked{% endif %} class="w-4.5 h-4.5 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500">
+      <label for="is_active" class="ml-2.5 text-sm font-medium text-gray-700">Activate Category (visible on site)</label>
+    </div>
+
+    <div class="pt-4 border-t border-gray-100 flex justify-end space-x-3">
+      <a href="{% url 'category_list' %}" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-4 py-2.5 rounded-lg transition-colors">Cancel</a>
+      <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-colors shadow-sm">Save Category</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
