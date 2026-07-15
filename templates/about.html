@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Learn about Sri Ranganatha Agency (SRA). Serving Rayalaseema farmers since inception with high-yield seeds, bio fertilizers, and quality crop protection advice.">
+  <meta name="description" content="Sri Rangantha Agency is a leading agriculture products company in Nandyal, offering quality fertilizers, seeds, pesticides, and trusted farming solutions.">
   <meta name="keywords" content="Leading Agriculture Products Company in Nandyal, Trusted Agriculture Company, Agriculture Experts, Agriculture Service Provider, Farmer First Agriculture Company, Agriculture Business in Nandyal, Agriculture Product Distributor, Local Agriculture Supplier, Reliable Agri Products Supplier, Trusted Agriculture Company in Andhra Pradesh, Best Agriculture Partner for Farmers, Leading Agriculture Solutions Provider in Nandyal, High Quality Agriculture Products Supplier in Nandyal, Agriculture Product Experts in Nandyal, Sustainable Farming Solutions Provider, Agriculture Business Serving Farmers, Professional Agricultural Products Distributor, Experienced Agricultural Inputs Supplier, Agriculture Solutions Company Near Nandyal, Sri Ranganatha Agency, About SRA Nandyal">
-  <title>About SRA | Trusted Agriculture Dealer in Nandyal, AP</title>
+  <title>Leading Agriculture Products Company in Nandyal | Sri Rangantha</title>
   
-  <link rel="canonical" href="https://www.sriagency.in/about.html">
+  <link rel="canonical" href="https://www.sriagency.in/leading-agriculture-products-company-in-nandyal/">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Sri Ranganatha Agency">
   <meta name="language" content="English">
@@ -17,20 +17,20 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.sriagency.in/about.html">
-  <meta property="og:title" content="About SRA | Trusted Agriculture Dealer in Nandyal, AP">
-  <meta property="og:description" content="Learn about Sri Ranganatha Agency (SRA). Serving Rayalaseema farmers since inception with high-yield seeds, bio fertilizers, and quality crop protection advice.">
-  <meta property="og:image" content="{% static 'assets/farmer_bg.jpg' %}">
+  <meta property="og:title" content="Leading Agriculture Products Company in Nandyal | Sri Rangantha">
+  <meta property="og:description" content="Sri Rangantha Agency is a leading agriculture products company in Nandyal, offering quality fertilizers, seeds, pesticides, and trusted farming solutions.">
+  <meta property="og:image" content="{% static 'assets/farmer_bg.webp' %}">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://www.sriagency.in/about.html">
-  <meta name="twitter:title" content="About SRA | Trusted Agriculture Dealer in Nandyal, AP">
-  <meta name="twitter:description" content="Learn about Sri Ranganatha Agency (SRA). Serving Rayalaseema farmers since inception with high-yield seeds, bio fertilizers, and quality crop protection advice.">
-  <meta name="twitter:image" content="{% static 'assets/farmer_bg.jpg' %}">
+  <meta name="twitter:url" content="https://www.sriagency.in/leading-agriculture-products-company-in-nandyal/">
+  <meta name="twitter:title" content="Leading Agriculture Products Company in Nandyal | Sri Rangantha">
+  <meta name="twitter:description" content="Sri Rangantha Agency is a leading agriculture products company in Nandyal, offering quality fertilizers, seeds, pesticides, and trusted farming solutions.">
+  <meta name="twitter:image" content="{% static 'assets/farmer_bg.webp' %}">
 
   <!-- CSS Link -->
   <link class="styles-link" rel="stylesheet" href="{% static 'styles.css' %}?v=1.8">
-  <link rel="shortcut icon" href="{% static 'logo.jpeg' %}" type="image/jpeg">
+  <link rel="shortcut icon" href="{% static 'logo.webp' %}" type="image/jpeg">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,11 +63,63 @@
         "@id": "https://www.sriagency.in/#organization",
         "name": "Sri Ranganatha Agency",
         "url": "https://www.sriagency.in/",
-        "logo": "https://www.sriagency.in/assets/logo.jpeg"
+        "logo": "https://www.sriagency.in/assets/logo.webp"
       }
     ]
   }
   </script>
+  <style>
+    /* Mobile Redesign for About Features Grid (320px-768px) */
+    @media (max-width: 768px) {
+      .about-story-features-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 16px !important;
+      }
+      .about-story-feature-card {
+        background: #ffffff !important;
+        border-radius: 20px !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+        padding: 20px !important;
+        border: 1px solid rgba(27, 94, 32, 0.15) !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 160px !important;
+        transition: all 0.3s ease !important;
+      }
+      .about-story-feature-card:hover {
+        transform: translateY(-4px) !important;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+        border-color: #1b5e20 !important;
+      }
+      .about-story-feature-icon {
+        width: 60px !important;
+        height: 60px !important;
+        padding: 15px !important;
+        background: rgba(27, 94, 32, 0.08) !important;
+        border-radius: 50% !important;
+        fill: #1b5e20 !important;
+        margin: 0 auto 12px !important;
+        box-sizing: border-box !important;
+      }
+      .about-story-feature-title {
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        line-height: 1.3 !important;
+        color: #333333 !important; /* Optional if text-color is needed */
+      }
+    }
+    
+    /* Switch to 1 column below 340px */
+    @media (max-width: 339px) {
+      .about-story-features-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -107,7 +159,7 @@
     <div class="container">
       <a href="{% url 'home' %}" class="logo">
         <div class="logo-icon">
-          <img src="{% static 'logo.jpeg' %}" alt="Sri Ranganatha Agency SRA Logo" loading="lazy">
+          <img src="{% static 'logo.webp' %}" alt="Sri Ranganatha Agency SRA Logo" loading="lazy" width="40" height="40">
         </div>
         <div class="logo-text">
           <span class="logo-title">SRI RANGANATHA</span>
@@ -145,17 +197,23 @@
       </button>
     </div>
   </header>
+<main id="main-content">
 
   <!-- HERO SECTION -->
   <section class="about-hero">
     <div class="container">
-        <div class="about-hero-content">
+        <div class="about-hero-content animate-fade-up">
           <div class="about-badge" style="color: var(--primary-light); font-weight: 700;">
             <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor; margin-right: 6px; vertical-align: middle;"><path d="M17 8C8 8 4 14 3 21h3c1-2 3-5 7-7 1 3 3 5 7 6V18c-3-1-4-3-4-5 3-1 6 0 8 2V12c-2-2-5-3-8-3 1-1 3-2 5-2V4c-3 1-5 2-7 4z"/></svg>
-            🧑‍🌾 About Us
+            🌱 About Us
           </div>
           <h1>About <span style="color: var(--primary-color);">Sri Ranganatha Agency</span></h1>
-          <h2 class="about-hero-sub" style="font-size: 20px; font-weight: 600; margin-bottom: 20px; color: var(--text-light);">Your Trusted Agriculture Partner in Nandyala</h2>
+          <h2 class="about-hero-sub" style="font-weight: 600; margin-bottom: 20px; color: var(--text-light);">Your Trusted Agriculture Partner in Nandyala</h2>
+          
+          <div class="about-hero-mobile-img-wrapper animate-slide-up">
+            <img src="{% static 'assets/farmer_hero.webp' %}" alt="Farmer" class="about-hero-mobile-img" onerror="this.src='{% static 'assets/person.webp' %}'" width="600" height="400">
+          </div>
+
           <p class="about-hero-desc">
             We are dedicated to providing high-quality agricultural inputs, expert advice and reliable solutions that help farmers improve productivity, protect crops and build a better tomorrow.
           </p>
@@ -168,11 +226,11 @@
     <div class="container">
       <div class="about-story-grid">
         <div class="about-story-img-wrapper">
-          <img src="{% static 'assets/shop.png' %}" alt="Sri Ranganatha Agency Storefront in Nandyala" loading="lazy">
+          <img src="{% static 'assets/shop.webp' %}" alt="Sri Ranganatha Agency Storefront in Nandyala" loading="lazy" width="800" height="600">
         </div>
         <div class="about-story-content">
           <div class="about-badge">
-            📖 Our Story
+            🌿 Our Story
           </div>
           <h2>Serving Rayalaseema Farmers with<br>Fertilizers, Seeds & Trust</h2>
           <p class="about-story-desc">
@@ -370,7 +428,7 @@
         
         <div class="footer-col footer-brand">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
-            <img src="{% static 'logo.jpeg' %}" alt="SRA Logo" style="width:40px; height:40px; border-radius:50%;" loading="lazy">
+            <img src="{% static 'logo.webp' %}" alt="SRA Logo" style="width:40px; height:40px; border-radius:50%;" loading="lazy" width="40" height="40">
             <h4 style="color:#ffffff; margin:0; font-size:18px;">Sri Ranganatha Agency</h4>
           </div>
           <p>Delivering quality agricultural solutions, fertilisers, insecticides, herbicides, and crop protection inputs to farmers in Rayalaseema region.</p>
@@ -449,5 +507,6 @@
 
   <!-- JavaScript Link -->
   <script src="{% static 'script.js' %}?v=1.5"></script>
+</main>
 </body>
 </html>

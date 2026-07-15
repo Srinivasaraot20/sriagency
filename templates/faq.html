@@ -19,18 +19,18 @@
   <meta property="og:url" content="https://www.sriagency.in/faq.html">
   <meta property="og:title" content="Frequently Asked Questions | Sri Ranganatha Agency (SRA)">
   <meta property="og:description" content="Frequently Asked Questions (FAQ) - Sri Ranganatha Agency (SRA) Nandyal. Learn about agricultural inputs, genuine brands, crop protection, and free farming advisory.">
-  <meta property="og:image" content="{% static 'assets/farmer_bg.jpg' %}">
+  <meta property="og:image" content="{% static 'assets/farmer_bg.webp' %}">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.sriagency.in/faq.html">
   <meta name="twitter:title" content="Frequently Asked Questions | Sri Ranganatha Agency (SRA)">
   <meta name="twitter:description" content="Frequently Asked Questions (FAQ) - Sri Ranganatha Agency (SRA) Nandyal. Learn about agricultural inputs, genuine brands, crop protection, and free farming advisory.">
-  <meta name="twitter:image" content="{% static 'assets/farmer_bg.jpg' %}">
+  <meta name="twitter:image" content="{% static 'assets/farmer_bg.webp' %}">
 
   <!-- CSS Link -->
   <link class="styles-link" rel="stylesheet" href="{% static 'styles.css' %}?v=1.8">
-  <link rel="shortcut icon" href="{% static 'logo.jpeg' %}" type="image/jpeg">
+  <link rel="shortcut icon" href="{% static 'logo.webp' %}" type="image/jpeg">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,7 +147,7 @@
     <div class="container">
       <a href="{% url 'home' %}" class="logo">
         <div class="logo-icon">
-          <img src="{% static 'logo.jpeg' %}" alt="Sri Ranganatha Agency SRA Logo" loading="lazy">
+          <img src="{% static 'logo.webp' %}" alt="Sri Ranganatha Agency SRA Logo" loading="lazy" width="40" height="40">
         </div>
         <div class="logo-text">
           <span class="logo-title">SRI RANGANATHA</span>
@@ -185,6 +185,7 @@
       </button>
     </div>
   </header>
+<main id="main-content">
 
   <!-- FAQ HERO SECTION -->
   <section class="about-hero faq-hero">
@@ -355,7 +356,7 @@
         
         <div class="footer-col footer-brand">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
-            <img src="{% static 'logo.jpeg' %}" alt="SRA Logo" style="width:40px; height:40px; border-radius:50%;" loading="lazy">
+            <img src="{% static 'logo.webp' %}" alt="SRA Logo" style="width:40px; height:40px; border-radius:50%;" loading="lazy" width="40" height="40">
             <h4 style="color:#ffffff; margin:0; font-size:18px;">Sri Ranganatha Agency</h4>
           </div>
           <p>Delivering quality agricultural solutions, fertilisers, insecticides, herbicides, and crop protection inputs to farmers in Rayalaseema region.</p>
@@ -521,5 +522,6 @@
       });
     });
   </script>
+</main>
 </body>
 </html>

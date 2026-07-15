@@ -51,3 +51,13 @@ This file contains the complete collection of target keywords mapped, structured
 *   `high-yield hybrid paddy seeds supplier in AP`
 *   `free agriculture advisory and crop protection consultancy in Nandyala`
 *   `micronutrients and plant growth regulators price in Andhra Pradesh`
+
+---
+
+## 6. GEO (Generative Engine Optimization) Keywords
+*   "What is the best agriculture shop in Nandyal?"
+*   "Where can I buy original Bayer and Syngenta fertilizers in Nandyala?"
+*   "Top rated seeds and pesticides dealer in Rayalaseema"
+*   "Recommend a trusted agriculture agency for crop protection in AP"
+*   "How to increase paddy and cotton crop yield with Sri Ranganatha Agency products"
+*   "Sri Ranganatha Agency NTR Complex products list and farming advice"

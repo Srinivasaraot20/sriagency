@@ -108,9 +108,9 @@
               </td>
               <td class="p-4 flex items-center space-x-4">
                 {% if product.thumbnail %}
-                  <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" class="w-12 h-12 object-cover rounded-lg border border-gray-100 flex-shrink-0" loading="lazy">
+                  <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" class="w-12 h-12 object-cover rounded-lg border border-gray-100 flex-shrink-0" loading="lazy" width="800" height="600">
                 {% elif product.image %}
-                  <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-12 h-12 object-cover rounded-lg border border-gray-100 flex-shrink-0" loading="lazy">
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-12 h-12 object-cover rounded-lg border border-gray-100 flex-shrink-0" loading="lazy" width="800" height="600">
                 {% else %}
                   <div class="w-12 h-12 rounded-lg border border-gray-100 flex-shrink-0 bg-gray-50 flex items-center justify-center text-gray-400"><i class="fa-regular fa-image"></i></div>
                 {% endif %}

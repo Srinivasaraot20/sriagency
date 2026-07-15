@@ -1,0 +1,11 @@
+# Sri Agency
+This is a web application for Sri Agency, which deals in agricultural products like fertilizers, pesticides, and seeds.
+
+## Project Structure
+- Built with Django
+- Main apps: `products`, `enquiries`, `dashboard`, `accounts`, `categories`
+- Templates are stored in the `templates/` directory.
+- Static assets are in the `static/` directory.
+
+## Purpose
+This file provides context to Large Language Models (LLMs) analyzing this repository or web page.

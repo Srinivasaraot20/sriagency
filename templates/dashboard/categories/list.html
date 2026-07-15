@@ -29,7 +29,7 @@
           <tr class="hover:bg-gray-50 transition-colors">
             <td class="p-4 pl-6">
               {% if cat.image %}
-                <img src="{{ cat.image.url }}" alt="{{ cat.name }}" class="w-12 h-12 object-cover rounded-lg border border-gray-100" loading="lazy">
+                <img src="{{ cat.image.url }}" alt="{{ cat.name }}" class="w-12 h-12 object-cover rounded-lg border border-gray-100" loading="lazy" width="800" height="600">
               {% else %}
                 <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
                   <i class="fa-solid fa-image"></i>

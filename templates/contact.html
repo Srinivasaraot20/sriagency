@@ -19,18 +19,18 @@
   <meta property="og:url" content="https://www.sriagency.in/contact.html">
   <meta property="og:title" content="Contact Sri Ranganatha Agency | Agriculture Shop in Nandyal">
   <meta property="og:description" content="Contact Sri Ranganatha Agency, your trusted agriculture shop in Nandyal for fertilizers, pesticides, seeds, micronutrients, crop protection products, and expert farming solutions.">
-  <meta property="og:image" content="{% static 'assets/farmer_bg.jpg' %}">
+  <meta property="og:image" content="{% static 'assets/farmer_bg.webp' %}">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.sriagency.in/contact.html">
   <meta name="twitter:title" content="Contact Sri Ranganatha Agency | Agriculture Shop in Nandyal">
   <meta name="twitter:description" content="Contact Sri Ranganatha Agency, your trusted agriculture shop in Nandyal for fertilizers, pesticides, seeds, micronutrients, crop protection products, and expert farming solutions.">
-  <meta name="twitter:image" content="{% static 'assets/farmer_bg.jpg' %}">
+  <meta name="twitter:image" content="{% static 'assets/farmer_bg.webp' %}">
 
   <!-- CSS Link -->
   <link class="styles-link" rel="stylesheet" href="{% static 'styles.css' %}?v=1.8">
-  <link rel="shortcut icon" href="{% static 'logo.jpeg' %}" type="image/jpeg">
+  <link rel="shortcut icon" href="{% static 'logo.webp' %}" type="image/jpeg">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,7 +62,7 @@
         "@type": "LocalBusiness",
         "@id": "https://www.sriagency.in/#localbusiness",
         "name": "Sri Ranganatha Agency",
-        "image": "https://www.sriagency.in/assets/farmer_bg.jpg",
+        "image": "https://www.sriagency.in/assets/farmer_bg.webp",
         "telephone": "+917093271715",
         "email": "sriranganathapnf@gmail.com",
         "address": {
@@ -136,7 +136,7 @@
     <div class="container">
       <a href="{% url 'home' %}" class="logo">
         <div class="logo-icon">
-          <img src="{% static 'logo.jpeg' %}" alt="Sri Ranganatha Agency SRA Logo" loading="lazy">
+          <img src="{% static 'logo.webp' %}" alt="Sri Ranganatha Agency SRA Logo" loading="lazy" width="40" height="40">
         </div>
         <div class="logo-text">
           <span class="logo-title">SRI RANGANATHA</span>
@@ -174,6 +174,7 @@
       </button>
     </div>
   </header>
+<main id="main-content">
 
   <!-- BREADCRUMBS & HERO SECTION -->
   <section class="contact-hero">
@@ -194,7 +195,7 @@
           </p>
         </div>
         <div class="contact-hero-image-wrapper">
-          <img src="{% static 'assets/shop.png' %}" alt="Sri Ranganatha Agency Storefront in Nandyala" loading="lazy">
+          <img src="{% static 'assets/shop.webp' %}" alt="Sri Ranganatha Agency Storefront in Nandyala" loading="lazy" width="800" height="600">
         </div>
       </div>
     </div>
@@ -317,7 +318,7 @@ Nandyala, Andhra Pradesh - 518501</span>
             <div class="contact-form-header-box">
               <h2>Send Us Your Enquiry</h2>
               <div class="contact-form-logo" style="width: 60px; height: 60px; margin: 10px auto 0; border-radius: 50%; overflow: hidden; box-shadow: var(--shadow-sm); border: 1.5px solid rgba(27, 94, 32, 0.15); display: flex; align-items: center; justify-content: center; background-color: var(--white);">
-                <img src="{% static 'logo.jpeg' %}" alt="Sri Ranganatha Agency Logo" style="width: 90%; height: 90%; object-fit: contain; border-radius: 50%;" loading="lazy">
+                <img src="{% static 'logo.webp' %}" alt="Sri Ranganatha Agency Logo" style="width: 90%; height: 90%; object-fit: contain; border-radius: 50%;" loading="lazy" width="40" height="40">
               </div>
             </div>
 
@@ -496,7 +497,7 @@ Nandyala, Andhra Pradesh - 518501</span>
         
         <div class="footer-col footer-brand">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
-            <img src="{% static 'logo.jpeg' %}" alt="SRA Logo" style="width:40px; height:40px; border-radius:50%;" loading="lazy">
+            <img src="{% static 'logo.webp' %}" alt="SRA Logo" style="width:40px; height:40px; border-radius:50%;" loading="lazy" width="40" height="40">
             <h4 style="color:#ffffff; margin:0; font-size:18px;">Sri Ranganatha Agency</h4>
           </div>
           <p>Delivering quality agricultural solutions, fertilisers, insecticides, herbicides, and crop protection inputs to farmers in Rayalaseema region.</p>
@@ -848,5 +849,6 @@ Nandyala, Andhra Pradesh - 518501</span>
   </script>
   <!-- JavaScript Link -->
   <script src="{% static 'script.js' %}?v=1.5"></script>
+</main>
 </body>
 </html>
