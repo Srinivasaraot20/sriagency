@@ -9,6 +9,58 @@
   
   <!-- CSS Link -->
   <link rel="stylesheet" href="{% static 'styles.css' %}?v=1.8">
+  <style>
+    /* Fix Login Page Layout (Desktop & Mobile) */
+    body.login-page-body {
+      margin: 0;
+      padding: 0;
+    }
+    #main-content {
+      padding-top: 90px;
+    }
+    .login-split-container {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      align-items: stretch !important;
+      min-height: calc(100vh - 90px) !important;
+      width: 100% !important;
+      margin: 0 !important;
+      background-color: #f9f9f9 !important;
+    }
+    .login-left-panel {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-end !important;
+      height: 100% !important;
+      position: relative !important;
+    }
+    .login-right-panel {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      height: 100% !important;
+      background-color: #f9f9f9 !important;
+      padding: 40px !important;
+    }
+    .login-card-wrapper {
+      margin: auto !important;
+      width: 100% !important;
+      max-width: 480px !important;
+    }
+    @media (max-width: 768px) {
+      .login-split-container {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+      }
+      .login-left-panel {
+        min-height: 50vh !important;
+        padding-top: 20px !important;
+      }
+      .login-right-panel {
+        padding: 30px 20px !important;
+      }
+    }
+  </style>
 </head>
 <body class="login-page-body">
 
