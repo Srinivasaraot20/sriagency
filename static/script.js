@@ -441,8 +441,20 @@ function showProductDetails(id) {
   const modalContactBtn = document.getElementById('modalContactBtn');
 
   if (modalImg) {
-    modalImg.src = product.img;
+    if (product.img) {
+      modalImg.src = product.img;
+    } else if (product.thumb) {
+      modalImg.src = product.thumb;
+    } else {
+      modalImg.src = 'static/logo.webp'; // Default placeholder
+    }
     modalImg.alt = product.title;
+    
+    // If the image fails to load, use a default placeholder
+    modalImg.onerror = function() {
+      this.onerror = null;
+      this.src = 'static/logo.webp';
+    };
   }
   if (modalBadge) {
     modalBadge.textContent = product.badge;
