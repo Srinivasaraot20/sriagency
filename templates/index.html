@@ -154,7 +154,7 @@
         <div class="top-bar-item">
           <!-- Pin Icon -->
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          <span>Shop No. 27, NTR Complex, Atmakur Road, Telugu Peta, Nandyala, AP – 518501</span>
+          <span>Shop No. 27, NTR Complex, Atmakur Road, Telugu Peta, Nandyala, AP - 518501</span>
         </div>
         <div class="top-bar-item">
           <!-- Clock Icon -->
@@ -204,6 +204,24 @@
             </a>
           </li>
           <li><a href="{% url 'contact' %}" class="nav-link">Contact Us</a></li>
+          <li class="mobile-menu-divider"></li>
+          <li class="mobile-login-item">
+            <a href="{% url 'login' %}" class="btn-mobile-login" aria-label="Login to Farmer Portal" onclick="document.querySelector('.nav-menu').classList.remove('open'); document.querySelector('.hamburger').setAttribute('aria-expanded', 'false');">
+              <svg viewBox="0 0 24 24" class="mobile-login-icon"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              Login
+            </a>
+          </li>
+          <li class="mobile-menu-divider"></li>
+          <li class="mobile-contact-info">
+            <div class="mobile-contact-row">
+              <svg viewBox="0 0 24 24" class="mobile-contact-icon"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span>Shop No. 27, NTR Complex, Atmakur Road, Telugu Peta, Nandyala, AP - 518501</span>
+            </div>
+            <div class="mobile-contact-row">
+              <svg viewBox="0 0 24 24" class="mobile-contact-icon"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              <span>+91 70932 71715</span>
+            </div>
+          </li>
         </ul>
       </nav>
 
@@ -338,19 +356,7 @@
             <span class="category-name">☘️ Bio Fertilisers</span>
           </div>
 
-          <div class="category-item" onclick="document.getElementById('products-category').scrollIntoView();">
-            <div class="category-icon">
-              <!-- Sprout/Seed Icon -->
-              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:28px; height:28px;">
-                <path d="M32 58V16" />
-                <circle cx="32" cy="12" r="4" fill="currentColor" />
-                <path d="M32 26C40 26 44 20 44 20 C44 20 38 18 32 22" />
-                <path d="M32 38C24 38 20 32 20 32 C20 32 26 30 32 34" />
-                <path d="M32 48C40 48 44 42 44 42 C44 42 38 40 32 44" />
-              </svg>
-            </div>
-            <span class="category-name">🌱 Seeds</span>
-          </div>
+          
 
         </div>
       </div>
