@@ -22,15 +22,17 @@ def contact(request):
     categories = Category.objects.filter(is_active=True)
     return render(request, 'contact.html', {'categories': categories})
 
-def products(request):
+def products(request, category_slug=None):
     categories = Category.objects.filter(is_active=True)
     products = Product.objects.filter(is_active=True)
     
-    selected_category_slug = request.GET.get('category')
+    if not category_slug:
+        category_slug = request.GET.get('category')
+        
     selected_category = None
-    if selected_category_slug:
+    if category_slug:
         try:
-            selected_category = Category.objects.get(slug=selected_category_slug, is_active=True)
+            selected_category = Category.objects.get(slug=category_slug, is_active=True)
             products = products.filter(category=selected_category)
         except Category.DoesNotExist:
             pass
@@ -58,7 +60,7 @@ def products(request):
         'categories': categories,
         'products': products,
         'selected_category': selected_category,
-        'selected_category_slug': selected_category_slug,
+        'selected_category_slug': category_slug,
         'q': q,
         'sort': sort,
     }
