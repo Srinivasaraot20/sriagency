@@ -15,7 +15,7 @@ def validate_product_image(image_file):
         raise ValidationError("File size exceeds 5 MB limit.")
     # Validate extension
     ext = os.path.splitext(image_file.name)[1].lower()
-    if ext not in ['.jpg', '.jpeg', '.png', '.webp']:
+    if ext not in ['.webp', '.webp', '.webp', '.webp']:
         raise ValidationError("Unsupported image format. Allowed formats: jpg, jpeg, png, webp.")
 
 class Product(models.Model):
@@ -170,7 +170,7 @@ class Product(models.Model):
                 
                 thumb_name = os.path.basename(self.image.name)
                 thumb_base, _ = os.path.splitext(thumb_name)
-                self.thumbnail.save(f'{thumb_base}_thumb.jpg', ContentFile(temp_thumb.read()), save=False)
+                self.thumbnail.save(f'{thumb_base}_thumb.webp', ContentFile(temp_thumb.read()), save=False)
             except Exception as e:
                 print("Error generating thumbnail:", e)
 

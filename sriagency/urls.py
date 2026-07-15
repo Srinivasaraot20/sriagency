@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 from dashboard.views_public import home, about, contact, products, faq
 from accounts.views import user_login, user_logout
 from dashboard.views import dashboard_home
@@ -11,6 +12,8 @@ from accounts.views_mgmt import profile_edit, user_list, user_add, user_edit, us
 urlpatterns = [
     # Public views
     path('', home, name='home'),
+    path('sitemap.xml', TemplateView.as_view(template_name='sitemap.xml', content_type='text/xml')),
+    path('llms.txt', TemplateView.as_view(template_name='llms.txt', content_type='text/plain')),
     path('about.html', about, name='about'),
     path('contact.html', contact, name='contact'),
     path('products.html', products, name='products'),
@@ -18,6 +21,18 @@ urlpatterns = [
     path('login.html', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
     
+    # SEO Slugs
+    path('best-agricultural-products-supplier-in-nandyal/', home),
+    path('leading-agriculture-products-company-in-nandyal/', about),
+    
+    path('agricultural-fertilizers-supplier-in-nandyal/', products, {'category_slug': 'fertilizers'}),
+    path('agricultural-insecticides-supplier-in-nandyal/', products, {'category_slug': 'insecticides'}),
+    path('agricultural-fungicides-supplier-in-nandyal/', products, {'category_slug': 'fungicides'}),
+    path('agricultural-herbicides-supplier-in-nandyal/', products, {'category_slug': 'herbicides'}),
+    path('agricultural-micronutrients-supplier-in-nandyal/', products, {'category_slug': 'micronutrients'}),
+    path('agricultural-bio-fertilizers-supplier-in-nandyal/', products, {'category_slug': 'bio-fertilizers'}),
+    path('agricultural-seeds-supplier-in-nandyal/', products, {'category_slug': 'seeds'}),
+
     # Contact Form endpoint
     path('submit-enquiry/', submit_enquiry, name='submit_enquiry'),
     
