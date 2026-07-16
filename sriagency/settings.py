@@ -79,6 +79,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'sriagency.wsgi.application'
 
 
+import os
+import dj_database_url
+
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
@@ -88,6 +91,17 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# If a DATABASE_URL environment variable is provided, use it (e.g. Supabase, Neon)
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
+
+# Use Signed Cookies for sessions to avoid writing to the DB upon login
+# (fixes "attempt to write a readonly database" on Vercel with SQLite)
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 
 # Password validation
