@@ -4350,4 +4350,5 @@ select.contact-input-field {
 .animate-slide-up {
   opacity: 0;
   animation: slideUpImg 0.8s ease-out forwards;
+  
 }
