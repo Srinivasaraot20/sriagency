@@ -71,18 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Login page form submission
-  const loginPageForm = document.querySelector('#loginPageForm');
-  if (loginPageForm) {
-    loginPageForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.querySelector('#loginEmail').value;
-      alert(`Welcome back to Sri Ranganatha Agency portal! Logged in as: ${email}`);
-      window.location.href = 'index.html'; // Redirect to home page on login success
-    });
-  }
-
+  // The login logic is handled purely by Django views now, so we don't intercept it.
+  
   // Slider / Carousel System Initialization
-  initSlider('.categories-slider-wrapper', 4, 3, 2, 1);
+  initSlider('.categories-slider-wrapper', 3, 3, 2, 1);
   initSlider('.split-products-slider-wrapper', 3, 2, 2, 1);
   initSlider('.testimonials-slider-wrapper', 3, 2, 1, 1, true); // With dot indicators
   initSlider('.brands-slider-wrapper', 6, 4, 3, 2);
@@ -144,16 +136,25 @@ document.addEventListener('DOMContentLoaded', () => {
         slide.style.maxWidth = `${slideWidth}%`;
       });
 
+      if (slides.length <= slidesPerView) {
+        track.style.justifyContent = 'center';
+      } else {
+        track.style.justifyContent = 'flex-start';
+      }
+
       const translateAmount = currentIndex * slideWidth;
       track.style.transform = `translateX(-${translateAmount}%)`;
 
       // Update button states
+      const needsSliding = slides.length > slidesPerView;
+      
       if (prevBtn) {
+        prevBtn.style.display = needsSliding ? 'flex' : 'none';
         if (currentIndex === 0) prevBtn.classList.add('disabled');
         else prevBtn.classList.remove('disabled');
       }
-
       if (nextBtn) {
+        nextBtn.style.display = needsSliding ? 'flex' : 'none';
         if (currentIndex >= maxIndex) nextBtn.classList.add('disabled');
         else nextBtn.classList.remove('disabled');
       }
@@ -432,8 +433,20 @@ function showProductDetails(id) {
   const modalContactBtn = document.getElementById('modalContactBtn');
 
   if (modalImg) {
-    modalImg.src = product.img;
+    if (product.img) {
+      modalImg.src = product.img;
+    } else if (product.thumb) {
+      modalImg.src = product.thumb;
+    } else {
+      modalImg.src = 'static/logo.webp'; // Default placeholder
+    }
     modalImg.alt = product.title;
+    
+    // If the image fails to load, use a default placeholder
+    modalImg.onerror = function() {
+      this.onerror = null;
+      this.src = 'static/logo.webp';
+    };
   }
   if (modalBadge) {
     modalBadge.textContent = product.badge;
@@ -482,3 +495,53 @@ window.addEventListener('click', function(e) {
 
 
 
+
+// Scroll to Top Button Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollToTopBtn = document.createElement('button');
+  scrollToTopBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 4l-8 8h6v8h4v-8h6z"/></svg>';
+  scrollToTopBtn.className = 'scroll-to-top-btn';
+  scrollToTopBtn.setAttribute('aria-label', 'Scroll to top');
+  document.body.appendChild(scrollToTopBtn);
+
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      scrollToTopBtn.classList.add('show');
+    } else {
+      scrollToTopBtn.classList.remove('show');
+    }
+  });
+
+  scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+});
+
+// Sync sticky header positions
+document.addEventListener('DOMContentLoaded', () => {
+  const topBar = document.querySelector('.top-bar');
+  const mainHeader = document.querySelector('.main-header');
+  
+  function updateStickyPosition() {
+    let totalHeight = 0;
+    if (topBar) {
+      const topBarHeight = topBar.offsetHeight;
+      if (mainHeader) mainHeader.style.top = topBarHeight + 'px';
+      totalHeight += topBarHeight;
+    } else if (mainHeader) {
+      mainHeader.style.top = '0px';
+    }
+    
+    if (mainHeader) {
+      totalHeight += mainHeader.offsetHeight;
+    }
+    
+    document.body.style.paddingTop = totalHeight + 'px';
+  }
+  
+  window.addEventListener('resize', updateStickyPosition);
+  updateStickyPosition();
+});
