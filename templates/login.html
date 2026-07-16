@@ -48,19 +48,26 @@
       max-width: 480px !important;
     }
     @media (max-width: 768px) {
+      body, html {
+        overflow-x: hidden !important;
+      }
+      
       .login-split-container {
         grid-template-columns: 1fr !important;
         min-height: auto !important;
         display: block !important;
         background: #f7faf7 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
       }
       
-      /* 1. Remove the Hero Image and Text */
+      /* 1. Hide Desktop Left Section */
       .login-left-panel {
         display: none !important;
       }
       
-      /* 3. Header & Hamburger Menu */
+      /* 2. Header & Hamburger Menu */
       .login-page-body .main-header .container {
         height: 64px !important;
         padding: 0 16px !important;
@@ -97,34 +104,45 @@
         margin: 0 !important;
       }
 
-      /* 2. Show the Login Form Immediately & 6. Spacing */
+      /* 3. Login Right Panel Container */
       .login-right-panel {
-        padding: 20px 0 32px 0 !important;
+        padding: 20px 16px !important;
         background: transparent !important;
         margin-top: 0 !important;
         min-height: calc(100vh - 64px) !important;
-        align-items: flex-start !important; 
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
       }
+      
       .login-card-wrapper {
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box !important;
       }
       
       /* 4. Login Card Styling */
       .login-form-card {
-        width: 95% !important;
-        max-width: 480px !important;
+        width: 100% !important;
+        max-width: 420px !important;
         border-radius: 24px !important;
         padding: 24px 20px !important;
         box-shadow: 0 4px 16px rgba(0,0,0,0.08) !important;
         background: #fff !important;
         margin: 0 auto !important;
+        box-sizing: border-box !important;
       }
       
-      /* 5. Visible Form Fields */
+      /* 5. Form Fields */
       .login-form-header {
         margin-bottom: 20px !important;
       }
@@ -138,23 +156,41 @@
       }
       .login-form-group {
         margin-bottom: 16px !important;
+        width: 100% !important;
       }
       .login-form-label {
         font-size: 12px !important;
         margin-bottom: 6px !important;
       }
+      .login-input-wrapper {
+        width: 100% !important;
+      }
       .login-input {
+        width: 100% !important;
         padding: 12px 16px 12px 42px !important;
+        box-sizing: border-box !important;
       }
       .login-form-options {
         margin-bottom: 20px !important;
+        width: 100% !important;
       }
       .btn-login-submit {
+        width: 100% !important;
         padding: 12px !important;
+        box-sizing: border-box !important;
       }
+      
+      /* 6. Secure Login Text */
       .login-secure-footer {
         margin-top: 20px !important;
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
       }
+      
+      .hero-banner img, .product-banner img { width: 100%; height: auto; object-fit: contain; object-position: center; display: block; }
     }
   </style>
 </head>
