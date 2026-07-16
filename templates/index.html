@@ -996,54 +996,56 @@ Explore More
   </a>
 
   <!-- PRODUCT DETAILS MODAL -->
-  <div id="productModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 9999; align-items: center; justify-content: center; padding: 20px; transition: opacity 0.3s ease;">
-    <div class="product-modal-card" style="background-color: var(--white); width: 100%; max-width: 700px; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; position: relative; max-height: 90vh; display: flex; flex-direction: column;">
-      <button class="modal-close-btn" onclick="closeProductModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 28px; color: var(--text-light); cursor: pointer; z-index: 10; transition: color 0.2s;">&times;</button>
+  <div id="productModal" class="modal-overlay" style="display: none;">
+    <div class="product-modal-card">
+      <button class="modal-close-btn" onclick="closeProductModal()">&times;</button>
       
-      <div class="product-modal-body" style="overflow-y: auto; padding: 30px;">
-        <div class="product-modal-grid-layout" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; align-items: start;">
-          <div class="product-modal-media" style="background-color: #fafafa; border-radius: var(--border-radius-md); padding: 20px; display: flex; align-items: center; justify-content: center; height: 260px; border: 1px solid rgba(27, 94, 32, 0.05);">
-            <img id="modalProductImg" src="" alt="Product Image" style="max-width: 100%; max-height: 100%; object-fit: contain;" loading="lazy" width="800" height="600">
+      <div class="product-modal-body">
+        <div class="product-modal-media">
+          <img id="modalProductImg" src="" alt="Product Image" loading="lazy" width="800" height="600">
+        </div>
+        
+        <div class="product-modal-content">
+          <div style="text-align: left;">
+            <span id="modalProductBadge" class="custom-prod-category-badge">Badge</span>
+            <h2 id="modalProductTitle" class="modal-title">Product Name</h2>
+            <span id="modalProductSub" class="modal-subtitle">Sub Title</span>
           </div>
           
-          <div class="product-modal-content">
-            <span id="modalProductBadge" class="top-product-badge" style="margin-bottom: 8px;">Badge</span>
-            <h2 id="modalProductTitle" style="font-size: 26px; color: var(--dark-color); font-weight: 800; margin-bottom: 4px; line-height: 1.2;">Product Name</h2>
-            <span id="modalProductSub" class="top-product-subtitle" style="display: block; margin-bottom: 20px;">Sub Title</span>
-            
-            <div class="product-modal-specs-list" style="margin-bottom: 20px; font-size: 14px; border-bottom: 1px solid rgba(27, 94, 32, 0.08); padding-bottom: 15px;">
-              <div style="margin-bottom: 6px;"><strong>Brand:</strong> <span id="modalProductBrand" style="color: var(--text-color);">Brand</span></div>
-              <div><strong>Technical Name:</strong> <span id="modalProductTechnical" style="color: var(--text-color);">Technical</span></div>
-            </div>
+          <div class="product-modal-specs-list">
+            <div class="spec-item"><strong>Brand:</strong> <span id="modalProductBrand">Brand</span></div>
+            <div class="spec-item"><strong>Technical Name:</strong> <span id="modalProductTechnical">Technical</span></div>
+          </div>
 
-            <div class="product-modal-info-section" style="margin-bottom: 16px;">
-              <h4 style="font-size: 14px; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">💡 Mode of Action / Usage</h4>
-              <p id="modalProductMode" style="font-size: 14px; color: var(--text-color); line-height: 1.5; margin: 0;">Details...</p>
-            </div>
+          <div class="product-modal-info-section">
+            <h4>💡 Mode of Action</h4>
+            <p id="modalProductMode">Details...</p>
+          </div>
 
-            <div class="product-modal-info-section" style="margin-bottom: 16px;">
-              <h4 style="font-size: 14px; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">🌾 Recommended Crops</h4>
-              <p id="modalProductCrops" style="font-size: 14px; color: var(--text-color); line-height: 1.5; margin: 0;">Crops...</p>
-            </div>
+          <div class="product-modal-info-section">
+            <h4>🌾 Recommended Crops</h4>
+            <p id="modalProductCrops">Crops...</p>
+          </div>
 
-            <div class="product-modal-info-section" style="margin-bottom: 25px;">
-              <h4 style="font-size: 14px; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">✅ Key Benefits</h4>
-              <p id="modalProductBenefits" style="font-size: 14px; color: var(--text-color); line-height: 1.5; margin: 0;">Benefits...</p>
-            </div>
+          <div class="product-modal-info-section" style="margin-bottom: 24px;">
+            <h4>✅ Key Benefits</h4>
+            <p id="modalProductBenefits">Benefits...</p>
+          </div>
 
-            <div class="product-modal-actions-box" style="display: flex; gap: 12px;">
-              <a id="modalWhatsAppBtn" href="" target="_blank" class="btn" style="background-color: #25d366; color: var(--white); flex: 1; justify-content: center; font-size: 14px;">
-                💬 WhatsApp Chat
-              </a>
-              <a id="modalContactBtn" href="" class="btn" style="background-color: var(--primary-color); color: var(--white); flex: 1; justify-content: center; font-size: 14px;">
-                📬 Fill Enquiry
-              </a>
-            </div>
+          <div class="product-modal-actions-box">
+            <a id="modalWhatsAppBtn" href="" target="_blank" class="btn modal-btn whatsapp-btn">
+              <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.78 14.15c-.24.69-1.42 1.35-1.95 1.4-1.33.12-3.14-.38-5.32-2.31-2.18-1.93-3.08-4.05-3.32-4.74-.24-.69.04-1.12.32-1.4.24-.24.53-.58.8-.87.16-.16.32-.4.43-.53.11-.13.16-.27.24-.4.24-.53.08-1.04-.08-1.45-.16-.4-1.45-3.52-1.99-4.83-.53-1.32-1.07-1.09-1.45-1.09-.37 0-.8 0-1.22.05-.43.05-1.12.21-1.7.8-.59.59-2.23 2.18-2.23 5.32s2.28 6.16 2.6 6.59c.32.43 4.48 6.86 10.87 9.61 1.52.65 2.7 1.04 3.63 1.33 1.53.48 2.92.41 4.02.25 1.22-.18 2.76-1.13 3.14-2.18.38-1.04.38-1.93.27-2.12-.11-.19-.4-.32-.85-.56z"/></svg> 
+              WhatsApp Chat
+            </a>
+            <a id="modalContactBtn" href="{% url 'contact' %}" class="btn modal-btn">
+              📝 Fill Enquiry
+            </a>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 
   <!-- MOCK LOGIN MODAL -->
   <div id="loginModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
