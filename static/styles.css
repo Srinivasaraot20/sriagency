@@ -4170,7 +4170,7 @@ select.contact-input-field {
     overflow: hidden; /* Hide outer scroll to let content scroll */
   }
   .product-modal-media {
-    width: 40%;
+    width: 30%;
     background: #f4f9f4;
     display: flex;
     align-items: center;
@@ -4180,13 +4180,14 @@ select.contact-input-field {
   }
   .product-modal-media img {
     width: 100%;
-    max-width: 250px;
+    max-width: 220px;
+    max-height: 220px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
   }
   .product-modal-content {
-    width: 60%;
+    width: 70%;
     padding: 30px 40px;
     overflow-y: auto;
   }
