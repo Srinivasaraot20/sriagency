@@ -71,16 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Login page form submission
-  const loginPageForm = document.querySelector('#loginPageForm');
-  if (loginPageForm) {
-    loginPageForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.querySelector('#loginEmail').value;
-      alert(`Welcome back to Sri Ranganatha Agency portal! Logged in as: ${email}`);
-      window.location.href = 'index.html'; // Redirect to home page on login success
-    });
-  }
-
+  // The login logic is handled purely by Django views now, so we don't intercept it.
+  
   // Slider / Carousel System Initialization
   initSlider('.categories-slider-wrapper', 3, 3, 2, 1);
   initSlider('.split-products-slider-wrapper', 3, 2, 2, 1);
